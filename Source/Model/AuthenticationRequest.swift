@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Authentication request model.
-public class AuthenticationRequest: Mappable {
+open class AuthenticationRequest: Mappable {
 
     /// The description for the authentication request.
     public private(set) final var description: String?
@@ -23,7 +23,7 @@ public class AuthenticationRequest: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -31,7 +31,7 @@ public class AuthenticationRequest: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.description <- map["description"]
     }
 

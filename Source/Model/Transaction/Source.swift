@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Source model.
-public class Source: Mappable {
+open class Source: Mappable {
 
     /// The id of the source.
     public private(set) final var id: String?
@@ -28,7 +28,7 @@ public class Source: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -36,7 +36,7 @@ public class Source: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         id  <- map["id"]
         amount <- map["amount"]
     }

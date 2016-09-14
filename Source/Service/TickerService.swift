@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// Ticker service.
-public class TickerService {
+open class TickerService {
 
     /**
       Creates a request to get the tickers on the system.
@@ -10,7 +10,7 @@ public class TickerService {
       - returns: A request to get the tickers on the system.
     */
     static func getAllTickers() -> Request {
-        return UpholdClient().get("/v0/ticker")
+        return UpholdClient().get(url: "/v0/ticker")
     }
 
     /**
@@ -21,7 +21,7 @@ public class TickerService {
       - returns: A request to get the tickers on the system for the selected currency.
     */
     static func getAllTickersByCurrency(currency: String) -> Request {
-        return UpholdClient().get(String(format: "/v0/ticker/%@", currency))
+        return UpholdClient().get(url: String(format: "/v0/ticker/%@", currency))
     }
 
 }

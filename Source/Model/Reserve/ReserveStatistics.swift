@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// ReserveStatistics model.
-public class ReserveStatistics: Mappable {
+open class ReserveStatistics: Mappable {
 
     /// The currency from the reserve.
     public private(set) final var currency: String?
@@ -33,7 +33,7 @@ public class ReserveStatistics: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -41,7 +41,7 @@ public class ReserveStatistics: Mappable {
 
       - parameter map: The object to map.
      */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.currency <- map["currency"]
         self.totals <- map["totals"]
         self.values <- map["values"]

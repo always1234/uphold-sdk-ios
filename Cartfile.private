@@ -1,2 +1,2 @@
-github "vadymmarkov/Fakery" ~> 1.2.0
-github "seegno-forks/Mockingjay" "support/add-carthage-configuration"
+github "vadymmarkov/Fakery" ~> 2.0.0
+github "seegno-forks/Mockingjay" "feature/migrate-swift3"

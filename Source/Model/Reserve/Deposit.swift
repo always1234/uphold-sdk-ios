@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Deposit model.
-public class Deposit: Mappable {
+open class Deposit: Mappable {
 
     /// The date when the transaction was created.
     public private(set) final var createdAt: String?
@@ -43,7 +43,7 @@ public class Deposit: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -51,7 +51,7 @@ public class Deposit: Mappable {
 
      - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.createdAt <- map["createdAt"]
         self.input <- map["in"]
         self.output <- map["out"]

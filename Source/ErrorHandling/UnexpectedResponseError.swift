@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// UnexpectedResponseError error.
-public class UnexpectedResponseError: UpholdClientError {
+open class UnexpectedResponseError: UpholdClientError {
 
     /**
       Constructor.

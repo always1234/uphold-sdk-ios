@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Card address model.
-public class Address: Mappable {
+open class Address: Mappable {
 
     /// The id of the created address.
     public private(set) final var id: String?
@@ -28,7 +28,7 @@ public class Address: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -36,7 +36,7 @@ public class Address: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.id <- map["id"]
         self.network <- map["network"]
     }

@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// ApiLimitExceedError error.
-public class ApiLimitExceedError: UpholdClientError {
+open class ApiLimitExceedError: UpholdClientError {
 
     /**
       Constructor.

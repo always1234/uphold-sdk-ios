@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// LogicError error.
-public class LogicError: UpholdClientError {
+open class LogicError: UpholdClientError {
 
     /**
       Constructor.

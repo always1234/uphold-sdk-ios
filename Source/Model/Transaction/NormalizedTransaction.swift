@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Transaction normalized model.
-public class NormalizedTransaction: Mappable {
+open class NormalizedTransaction: Mappable {
 
     /// The amount of the transaction normalized.
     public private(set) final var amount: String?
@@ -43,7 +43,7 @@ public class NormalizedTransaction: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -51,7 +51,7 @@ public class NormalizedTransaction: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.amount <- map["amount"]
         self.commission <- map["commission"]
         self.currency <- map["currency"]

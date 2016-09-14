@@ -4,7 +4,7 @@ import ObjectMapper
 import SwiftClient
 
 /// Transaction model.
-public class Transaction: BaseModel, Mappable {
+open class Transaction: BaseModel, Mappable {
 
     /// The id of the transaction.
     public private(set) final var id: String?
@@ -48,7 +48,7 @@ public class Transaction: BaseModel, Mappable {
     /// The card id path.
     private var cardIdPath: String? {
         get {
-            if let type = self.type where type.caseInsensitiveCompare("deposit") == .OrderedSame {
+            if let type = self.type, type.caseInsensitiveCompare("deposit") == .orderedSame {
                 return destination?.cardId
             }
 
@@ -96,7 +96,7 @@ public class Transaction: BaseModel, Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -104,7 +104,7 @@ public class Transaction: BaseModel, Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         id  <- map["id"]
         createdAt <- map["createdAt"]
         denomination <- map["denomination"]
@@ -125,12 +125,12 @@ public class Transaction: BaseModel, Mappable {
 
       - returns: A promise with the transaction.
     */
-    public func cancel() -> Promise<Transaction> {
+    open func cancel() -> Promise<Transaction> {
         guard let id = self.id else {
             return Promise<Transaction>(error: UnexpectedResponseError(message: "Transaction id should not be nil."))
         }
 
-        if (self.type?.caseInsensitiveCompare("deposit") == .OrderedSame) {
+        if (self.type?.caseInsensitiveCompare("deposit") == .orderedSame) {
             guard let _ = self.origin?.accountId else {
                 return Promise<Transaction>(error: UnexpectedResponseError(message: "Origin accountId is missing from this transaction."))
             }
@@ -157,9 +157,9 @@ public class Transaction: BaseModel, Mappable {
                 return Promise<Transaction>(error: LogicError(code: nil, message: "Unable to cancel uncommited transaction."))
 
             case "waiting":
-                let request = self.adapter.buildRequest(UserCardService.cancelTransaction(cardIdPath, transactionId: id))
+                let request = self.adapter.buildRequest(request: UserCardService.cancelTransaction(cardId: cardIdPath, transactionId: id))
 
-                return self.adapter.buildResponse(request)
+                return self.adapter.buildResponse(request: request)
 
             default:
                 return Promise<Transaction>(error: LogicError(code: nil, message: String(format: "This transaction cannot be cancelled, because the current status is %@.", status)))
@@ -171,8 +171,8 @@ public class Transaction: BaseModel, Mappable {
 
       - returns: A promise with the transaction.
     */
-    public func commit() -> Promise<Transaction> {
-        return commit(nil, transactionCommit: nil)
+    open func commit() -> Promise<Transaction> {
+        return commit(otp: nil, transactionCommit: nil)
     }
 
     /**
@@ -182,8 +182,8 @@ public class Transaction: BaseModel, Mappable {
 
       - returns: A promise with the transaction.
     */
-    public func commit(otp: String) -> Promise<Transaction> {
-        return commit(otp, transactionCommit: nil)
+    open func commit(otp: String) -> Promise<Transaction> {
+        return commit(otp: otp, transactionCommit: nil)
     }
 
     /**
@@ -193,8 +193,8 @@ public class Transaction: BaseModel, Mappable {
 
       - returns: A promise with the transaction.
     */
-    public func commit(transactionCommit: TransactionCommitRequest) -> Promise<Transaction> {
-        return commit(nil, transactionCommit: nil)
+    open func commit(transactionCommit: TransactionCommitRequest) -> Promise<Transaction> {
+        return commit(otp: nil, transactionCommit: nil)
     }
 
     /**
@@ -205,12 +205,12 @@ public class Transaction: BaseModel, Mappable {
 
       - returns: A promise with the transaction.
     */
-    public func commit(otp: String?, transactionCommit: TransactionCommitRequest?) -> Promise<Transaction> {
+    open func commit(otp: String?, transactionCommit: TransactionCommitRequest?) -> Promise<Transaction> {
         guard let id = self.id else {
             return Promise<Transaction>(error: UnexpectedResponseError(message: "Transaction id should not be nil."))
         }
 
-        if (self.type?.caseInsensitiveCompare("deposit") == .OrderedSame) {
+        if (self.type?.caseInsensitiveCompare("deposit") == .orderedSame) {
             guard let _ = self.origin?.accountId else {
                 return Promise<Transaction>(error: UnexpectedResponseError(message: "Origin accountId is missing from this transaction."))
             }
@@ -238,14 +238,14 @@ public class Transaction: BaseModel, Mappable {
 
         let request: Request
         guard let transactionCommit = transactionCommit else {
-            request = self.adapter.buildRequest(UserCardService.confirmTransaction(cardIdPath, otp: otp, transactionId: id, transactionCommitRequest: nil))
+            request = self.adapter.buildRequest(request: UserCardService.confirmTransaction(cardId: cardIdPath, otp: otp, transactionId: id, transactionCommitRequest: nil))
 
-            return self.adapter.buildResponse(request)
+            return self.adapter.buildResponse(request: request)
         }
 
-        request = self.adapter.buildRequest(UserCardService.confirmTransaction(cardIdPath, otp: otp, transactionId: id, transactionCommitRequest: Mapper().toJSON(transactionCommit)))
+        request = self.adapter.buildRequest(request: UserCardService.confirmTransaction(cardId: cardIdPath, otp: otp, transactionId: id, transactionCommitRequest: Mapper().toJSON(transactionCommit)))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
 }

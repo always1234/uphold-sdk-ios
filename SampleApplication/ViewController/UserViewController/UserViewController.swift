@@ -22,7 +22,7 @@ class UserViewController: UIViewController {
             return
         }
 
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
         self.authenticatedLabel.text = String(NSLocalizedString("user-view-controller.fetching-data", comment: "Fetching data."))
 
@@ -30,30 +30,30 @@ class UserViewController: UIViewController {
         let client = UpholdClient(bearerToken: bearerToken)
 
         client.getUser().always { () -> Void in
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }.then { (user: User) -> Promise<[Card]> in
             self.user = user
 
             return user.getCards()
         }.then { (cards: [Card]) -> () in
-            guard let user = self.user, firstName = user.firstName else {
+            guard let user = self.user, let firstName = user.firstName else {
                 return
             }
 
             self.authenticatedLabel.text = String(format: NSLocalizedString("user-view-controller.presenting-data", comment: "Presenting data."), firstName, cards.count)
-        }.error { (error: ErrorType) -> Void in
+        }.catch(execute: { (error: Error) in
             self.handleError()
-        }
+        })
     }
 
     /**
       Handles login errors.
     */
     func handleError() {
-        let alertController = UIAlertController(title: String(NSLocalizedString("user-view-controller.alert-title-fetching-error", comment: "Fetching error.")), message: String(NSLocalizedString("global.unknown-error", comment: "Something went wrong.")), preferredStyle: .Alert)
+        let alertController = UIAlertController(title: String(NSLocalizedString("user-view-controller.alert-title-fetching-error", comment: "Fetching error.")), message: String(NSLocalizedString("global.unknown-error", comment: "Something went wrong.")), preferredStyle: .alert)
 
-        alertController.addAction(UIAlertAction(title: String(NSLocalizedString("global.dismiss", comment: "Dismiss.")), style: .Default, handler: nil))
-        self.presentViewController(alertController, animated: true, completion:nil)
+        alertController.addAction(UIAlertAction(title: String(NSLocalizedString("global.dismiss", comment: "Dismiss.")), style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }

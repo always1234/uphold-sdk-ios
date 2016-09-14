@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Card normalized model.
-public class NormalizedCard: Mappable {
+open class NormalizedCard: Mappable {
 
     /// The amount available normalized.
     public private(set) final var available: String?
@@ -33,7 +33,7 @@ public class NormalizedCard: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -41,7 +41,7 @@ public class NormalizedCard: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         available  <- map["available"]
         balance <- map["balance"]
         currency <- map["currency"]

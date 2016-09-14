@@ -5,13 +5,13 @@ import SwiftClient
 import UIKit
 
 /// Uphold client.
-public class UpholdClient: Client {
+open class UpholdClient: Client {
 
     /// The SwiftLint rules that must be disabled.
     // swiftlint:disable force_try
 
     /// The Uphold user's token.
-    public private(set) var token: Token
+    open private(set) var token: Token
 
     /**
       Constructor.
@@ -21,7 +21,7 @@ public class UpholdClient: Client {
 
         super.init()
 
-        self.baseUrl(GlobalConfigurations.UPHOLD_API_URL)
+        _ = self.baseUrl(url: GlobalConfigurations.UPHOLD_API_URL)
     }
 
     /**
@@ -35,7 +35,7 @@ public class UpholdClient: Client {
         self.token = Token(bearerToken: bearerToken)
 
         if let token = token.bearerToken {
-            SessionManager.sharedInstance.setBearerToken(token)
+            SessionManager.sharedInstance.setBearerToken(token: token)
         }
     }
 
@@ -49,13 +49,13 @@ public class UpholdClient: Client {
 
       - returns: The authorization view controller presented modally.
     */
-    public func beginAuthorization(applicationViewController: UIViewController, clientId: String, scopes: [String], state: String) -> AuthorizationViewController? {
-        let url = String(format: "%@/authorize/%@?scope=%@&state=%@", GlobalConfigurations.UPHOLD_AUTHORIZATION_SERVER_URL, clientId, scopes.joinWithSeparator(" "), state)
+    open func beginAuthorization(applicationViewController: UIViewController, clientId: String, scopes: [String], state: String) -> AuthorizationViewController? {
+        let url = String(format: "%@/authorize/%@?scope=%@&state=%@", GlobalConfigurations.UPHOLD_AUTHORIZATION_SERVER_URL, clientId, scopes.joined(separator: " "), state)
 
         /// This try forces a runtime exception whenever the URL is not valid after escaping it.
-        let authorizationViewController = try! AuthorizationViewController(URL: URLUtils.escapeURL(url), entersReaderIfAvailable: false)
+        let authorizationViewController = try! AuthorizationViewController(url: URLUtils.escapeURL(url: url), entersReaderIfAvailable: false)
 
-        applicationViewController.presentViewController(authorizationViewController, animated: true, completion: nil)
+        applicationViewController.present(authorizationViewController, animated: true, completion: nil)
 
         return authorizationViewController
     }
@@ -72,12 +72,12 @@ public class UpholdClient: Client {
 
       - returns: A promise with the AuthenticationResponse.
     */
-    public func completeAuthorization(authorizationViewController: AuthorizationViewController, clientId: String, clientSecret: String, grantType: String, state: String, uri: NSURL) -> Promise<AuthenticationResponse> {
+    open func completeAuthorization(authorizationViewController: AuthorizationViewController, clientId: String, clientSecret: String, grantType: String, state: String, uri: URL) -> Promise<AuthenticationResponse> {
         let adapter = self.token.adapter
 
-        authorizationViewController.dismissViewControllerAnimated(true, completion: nil)
+        authorizationViewController.dismiss(animated: true, completion: nil)
 
-        guard let queryParameters = NSURLComponents(URL: uri, resolvingAgainstBaseURL: false)?.queryItems, stateParameter = queryParameters.filter({ parameter in parameter.name == "state" }).first, responseState = stateParameter.value else {
+        guard let queryParameters = URLComponents(url: uri, resolvingAgainstBaseURL: false)?.queryItems, let stateParameter = queryParameters.filter({ parameter in parameter.name == "state" }).first, let responseState = stateParameter.value else {
             return Promise<AuthenticationResponse>(error: UnexpectedResponseError(message: "URL query parameter state should not be nil."))
         }
 
@@ -85,11 +85,11 @@ public class UpholdClient: Client {
             return Promise<AuthenticationResponse>(error: StateMatchError(message: "URL query parameter state does not match."))
         }
 
-        guard let responseCode = queryParameters.filter({ parameter in parameter.name == "code" }).first, code = responseCode.value else {
+        guard let responseCode = queryParameters.filter({ parameter in parameter.name == "code" }).first, let code = responseCode.value else {
             return Promise<AuthenticationResponse>(error: UnexpectedResponseError(message: "URL query parameter code should not be nil."))
         }
 
-        return adapter.buildResponse(adapter.buildRequest(OAuth2Service.requestToken(clientId, clientSecret: clientSecret, code: code, grantType: grantType)))
+        return adapter.buildResponse(request: adapter.buildRequest(request: OAuth2Service.requestToken(clientId: clientId, clientSecret: clientSecret, code: code, grantType: grantType)))
     }
 
     /**
@@ -97,7 +97,7 @@ public class UpholdClient: Client {
 
       - returns: The reserve object.
      */
-    public func getReserve() -> Reserve {
+    open func getReserve() -> Reserve {
         return Reserve()
     }
 
@@ -106,10 +106,10 @@ public class UpholdClient: Client {
 
       - returns: A promise with all exchanges rates for all currency pairs.
      */
-    public func getTickers() -> Promise<[Rate]> {
+    open func getTickers() -> Promise<[Rate]> {
         let adapter = self.token.adapter
 
-        return adapter.buildResponse(adapter.buildRequest(TickerService.getAllTickers()))
+        return adapter.buildResponse(request: adapter.buildRequest(request: TickerService.getAllTickers()))
     }
 
     /**
@@ -119,10 +119,10 @@ public class UpholdClient: Client {
 
       - returns: A promise with all exchanges rates relative to a given currency.
      */
-    public func getTickersByCurrency(currency: String) -> Promise<[Rate]> {
+    open func getTickersByCurrency(currency: String) -> Promise<[Rate]> {
         let adapter = self.token.adapter
 
-        return adapter.buildResponse(adapter.buildRequest(TickerService.getAllTickersByCurrency(currency)))
+        return adapter.buildResponse(request: adapter.buildRequest(request: TickerService.getAllTickersByCurrency(currency: currency)))
     }
 
     /**
@@ -130,14 +130,14 @@ public class UpholdClient: Client {
 
       - returns: A promise with the user.
      */
-    public func getUser() -> Promise<User> {
+    open func getUser() -> Promise<User> {
         return self.token.getUser()
     }
 
     /**
       Invalidates the client session.
     */
-    public func invalidateSession() {
+    open func invalidateSession() {
         SessionManager.sharedInstance.invalidateSession()
     }
 

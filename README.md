@@ -6,8 +6,8 @@ The Uphold SDK for iOS provides an easy way for developers to integrate iOS appl
 
 ## Requirements
 
-    * Xcode 7
-    * Swift 2
+    * Xcode 8
+    * Swift 3
     * Carthage or CocoaPods
 
 ## Installation
@@ -17,7 +17,7 @@ The Uphold SDK for iOS provides an easy way for developers to integrate iOS appl
 1. Add to your `Podfile`.
 
     ```
-    platform :ios, '9.0'
+    platform :ios, '10.0'
     use_frameworks!
 
     # To use Uphold's production environment.
@@ -116,6 +116,8 @@ upholdClient.getUser().then { (user: User) -> () in
     /// The user information is available at the user object.
 }
 ```
+
+Note: Don't forget to add keychain sharing capabilities in your application's target inside the `Capabilities` tab.
 
 ### Get user cards with chaining
 
@@ -337,7 +339,8 @@ To build the sample application you need the [Xcode](https://developer.apple.com
  ```
 
 3. Open the sample project `SampleApplication.xcodeproj`.
-4. Build and run the app from inside Xcode.
+4. Add keychain sharing capabilities.
+5. Build and run the app from inside Xcode.
 
 The sample application is configured to use the [sandbox environment](https://sandbox.uphold.com), make sure you use a sandbox account to perform the login.
 

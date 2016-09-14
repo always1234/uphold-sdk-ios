@@ -24,13 +24,13 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
 
       - parameter sender: The pressed login button.
     */
-    @IBAction func didTapLoginButton(sender: AnyObject) {
+    @IBAction func didTapLoginButton(_ sender: AnyObject) {
         self.client = UpholdClient()
-        self.loginButton.enabled = false
+        self.loginButton.isEnabled = false
         let scopes: [String] = ["cards:read", "user:read"]
-        self.state = String(format: "oauth2:%@", NSUUID().UUIDString)
+        self.state = String(format: "oauth2:%@", UUID().uuidString)
 
-        guard let client = self.client, state = self.state else {
+        guard let client = self.client, let state = self.state else {
             self.handleError()
 
             return
@@ -50,31 +50,31 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
 
       - parameter url: Authorization URL.
     */
-    func completeAuthorization(url: NSURL) {
+    func completeAuthorization(_ url: URL) {
         let userViewController = UserViewController()
 
-        guard authorizationViewController = self.authorizationViewController, client = self.client, state = self.state else {
+        guard let authorizationViewController = self.authorizationViewController, let client = self.client, let state = self.state else {
             return self.handleError()
         }
 
         client.completeAuthorization(authorizationViewController, clientId: self.CLIENT_ID, clientSecret: self.CLIENT_SECRET, grantType: "authorization_code", state: state, uri: url).then { (response: AuthenticationResponse) -> () in
             userViewController.bearerToken = response.accessToken
 
-            self.presentViewController(userViewController, animated: true, completion: nil)
-        }.error { (error: ErrorType) -> Void in
+            self.present(userViewController, animated: true, completion: nil)
+        }.catch(execute: { (error: Error) in
             self.handleError()
-        }
+        })
     }
 
     /**
       Handles login errors.
     */
     func handleError() {
-        let alertController = UIAlertController(title: String(NSLocalizedString("login-view-controller.alert-title-login-error", comment: "Login Error.")), message: String(NSLocalizedString("global.unknown-error", comment: "Something went wrong.")), preferredStyle: .Alert)
-        self.loginButton.enabled = true
+        let alertController = UIAlertController(title: String(NSLocalizedString("login-view-controller.alert-title-login-error", comment: "Login Error.")), message: String(NSLocalizedString("global.unknown-error", comment: "Something went wrong.")), preferredStyle: .alert)
+        self.loginButton.isEnabled = true
 
-        alertController.addAction(UIAlertAction(title: String(NSLocalizedString("global.dismiss", comment: "Dismiss.")), style: .Default, handler: nil))
-        self.presentViewController(alertController, animated: true, completion:nil)
+        alertController.addAction(UIAlertAction(title: String(NSLocalizedString("global.dismiss", comment: "Dismiss.")), style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 
     /**
@@ -82,8 +82,8 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
 
       - parameter controller: The view controller.
     */
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        self.loginButton.enabled = true
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        self.loginButton.isEnabled = true
     }
 
 }

@@ -20,13 +20,13 @@ protocol PaginatorProtocol {
 
       - returns: A promise with the array of elements.
     */
-    var nextPageClosure: (range: String) -> Promise<[T]> {get}
+    var nextPageClosure: (_ range: String) -> Promise<[T]> {get}
 
     /**
       A closure to get a promise with a bolean indicating if exists a next page of elements.
 
       - returns: A promise with the bolean indicator.
     */
-    var hasNextPageClosure: (currentPage: Int) -> Promise<Bool> {get}
+    var hasNextPageClosure: (_ currentPage: Int) -> Promise<Bool> {get}
 
 }

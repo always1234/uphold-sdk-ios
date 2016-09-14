@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Withdraw otp settings model.
-public class Withdraw: Mappable {
+open class Withdraw: Mappable {
 
     /// The transactions withdraw crypto otp settings.
     public private(set) final var crypto: Crypto?
@@ -23,7 +23,7 @@ public class Withdraw: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -31,7 +31,7 @@ public class Withdraw: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.crypto <- map["crypto"]
     }
 

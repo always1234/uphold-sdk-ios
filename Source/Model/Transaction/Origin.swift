@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Origin model.
-public class Origin: Mappable {
+open class Origin: Mappable {
 
     /// The id of the account from the origin of the transaction.
     public private(set) final var accountId: String?
@@ -83,7 +83,7 @@ public class Origin: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -91,7 +91,7 @@ public class Origin: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         accountId <- map["AccountId"]
         cardId  <- map["CardId"]
         accountType  <- map["accountType"]

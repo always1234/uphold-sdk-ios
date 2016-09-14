@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// State match error.
-public class StateMatchError: UpholdClientError {
+open class StateMatchError: UpholdClientError {
 
     /**
       Constructor.

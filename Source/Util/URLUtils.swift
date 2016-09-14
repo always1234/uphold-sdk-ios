@@ -1,7 +1,7 @@
 import Foundation
 
 /// URL utils class.
-public class URLUtils {
+open class URLUtils {
 
     /**
       Escapes the given URL string and generates an NSURL.
@@ -12,9 +12,9 @@ public class URLUtils {
 
       - returns: The escaped NSURL.
     */
-    public static func escapeURL(url: String) throws -> NSURL {
-        guard let escapedUrl = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()), uri = NSURL(string: escapedUrl) else {
-            throw MalformedUrlError(message: "Invalid URL.")
+    open static func escapeURL(url: String) throws -> URL {
+        guard let escapedUrl = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed), let uri = URL(string: escapedUrl) else {
+            throw MalformedUrlError(message: "Invalid URL.") as Error
         }
 
         return uri

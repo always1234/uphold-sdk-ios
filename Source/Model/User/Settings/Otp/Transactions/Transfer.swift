@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Transfer otp settings model.
-public class Transfer: Mappable {
+open class Transfer: Mappable {
 
     /// A boolean indicating if the otp is enable for the transactions transfer process.
     public private(set) final var enabled: Bool?
@@ -23,7 +23,7 @@ public class Transfer: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -31,7 +31,7 @@ public class Transfer: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.enabled <- map["enabled"]
     }
 

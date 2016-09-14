@@ -14,7 +14,7 @@
     "tag": "0.2.1"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "10.0"
   },
   "requires_arc": true,
   "subspecs": [
@@ -42,10 +42,10 @@
       "3.0.13"
     ],
     "ObjectMapper": [
-      "1.2.0"
+      "2.0.0"
     ],
     "PromiseKit": [
-      "3.2.1"
+      "4.0.2"
     ],
     "SwiftClient": [
       "2.0.3"

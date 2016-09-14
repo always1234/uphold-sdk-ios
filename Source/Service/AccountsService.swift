@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// Accounts service.
-public class AccountsService {
+open class AccountsService {
 
     /**
       Gets an user account.
@@ -12,7 +12,7 @@ public class AccountsService {
       - returns: A request to get an user account.
     */
     static func getUserAccountById(accountId: String) -> Request {
-        return UpholdClient().get(String(format: "/v0/me/accounts/%@", accountId))
+        return UpholdClient().get(url: String(format: "/v0/me/accounts/%@", accountId))
     }
 
     /**
@@ -21,7 +21,7 @@ public class AccountsService {
       - returns: A request to get the user accounts.
     */
     static func getUserAccounts() -> Request {
-        return UpholdClient().get("/v0/me/accounts")
+        return UpholdClient().get(url: "/v0/me/accounts")
     }
 
 }

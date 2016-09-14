@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// User service.
-public class UserService {
+open class UserService {
 
     /**
       Creates a request to create a contact.
@@ -11,8 +11,8 @@ public class UserService {
 
       - returns: A request to create a contact.
     */
-    static func createContact(contactRequest: AnyObject) -> Request {
-        return UpholdClient().post("/v0/me/contacts").send(contactRequest)
+    static func createContact(contactRequest: Any) -> Request {
+        return UpholdClient().post(url: "/v0/me/contacts").send(data: contactRequest)
     }
 
     /**
@@ -21,7 +21,7 @@ public class UserService {
       - returns: A request to get the user information.
     */
     static func getUser() -> Request {
-        return UpholdClient().get("/v0/me")
+        return UpholdClient().get(url: "/v0/me")
     }
 
     /**
@@ -30,7 +30,7 @@ public class UserService {
       - returns: A request to get the user balances.
     */
     static func getUserBalances() -> Request {
-        return UpholdClient().get("/v0/me")
+        return UpholdClient().get(url: "/v0/me")
     }
 
     /**
@@ -39,7 +39,7 @@ public class UserService {
       - returns: A request to get the user contacts.
     */
     static func getUserContacts() -> Request {
-        return UpholdClient().get("/v0/me/contacts")
+        return UpholdClient().get(url: "/v0/me/contacts")
     }
 
     /**
@@ -48,7 +48,7 @@ public class UserService {
       - returns: A request to get the user phones.
     */
     static func getUserPhones() -> Request {
-        return UpholdClient().get("/v0/me/phones")
+        return UpholdClient().get(url: "/v0/me/phones")
     }
 
     /**
@@ -59,7 +59,7 @@ public class UserService {
       - returns: A request to get the user transactions.
     */
     static func getUserTransactions(range: String) -> Request {
-        return UpholdClient().get("/v0/me/transactions").set("Range", range)
+        return UpholdClient().get(url: "/v0/me/transactions").set(key: "Range", value: range)
     }
 
     /**
@@ -69,8 +69,8 @@ public class UserService {
 
       - returns: A request to update the user information.
     */
-    static func updateUser(updatefields: AnyObject) -> Request {
-        return UpholdClient().patch("/v0/me").send(updatefields)
+    static func updateUser(updatefields: Any) -> Request {
+        return UpholdClient().patch(url: "/v0/me").send(data: updatefields)
     }
 
 }

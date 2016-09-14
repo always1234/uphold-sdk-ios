@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Transaction commit request model.
-public class TransactionCommitRequest: Mappable {
+open class TransactionCommitRequest: Mappable {
 
     /// The transaction message.
     public private(set) final var message: String?
@@ -37,7 +37,7 @@ public class TransactionCommitRequest: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -45,7 +45,7 @@ public class TransactionCommitRequest: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.message <- map["message"]
         self.securityCode <- map["securityCode"]
     }

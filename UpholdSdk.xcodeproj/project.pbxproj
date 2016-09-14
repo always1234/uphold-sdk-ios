@@ -123,6 +123,16 @@
 		BC91E8A61BECDB030074C538 /* ReserveTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91E8A51BECDB030074C538 /* ReserveTest.swift */; };
 		BC9510CE1C0B92F800E2EDE1 /* UnexpectedResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9510CD1C0B92F800E2EDE1 /* UnexpectedResponseError.swift */; };
 		BC98A4B61C3BE80B00C60A3D /* GlobalConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98A4B51C3BE80B00C60A3D /* GlobalConfigurations.swift */; };
+		BC9BEFB51D944837008EBD68 /* MockSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFB41D944837008EBD68 /* MockSessionManager.swift */; };
+		BC9BEFB61D944837008EBD68 /* MockSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFB41D944837008EBD68 /* MockSessionManager.swift */; };
+		BC9BEFB81D944A5A008EBD68 /* MockKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFB71D944A5A008EBD68 /* MockKeychain.swift */; };
+		BC9BEFB91D944A5A008EBD68 /* MockKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFB71D944A5A008EBD68 /* MockKeychain.swift */; };
+		BC9BEFBB1D9538E0008EBD68 /* MockUpholdClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFBA1D9538E0008EBD68 /* MockUpholdClient.swift */; };
+		BC9BEFBC1D9538E0008EBD68 /* MockUpholdClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFBA1D9538E0008EBD68 /* MockUpholdClient.swift */; };
+		BC9BEFBE1D9543F7008EBD68 /* MockToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFBD1D9543F7008EBD68 /* MockToken.swift */; };
+		BC9BEFBF1D9543F7008EBD68 /* MockToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFBD1D9543F7008EBD68 /* MockToken.swift */; };
+		BC9BEFC11D95449A008EBD68 /* MockBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFC01D95449A008EBD68 /* MockBaseModel.swift */; };
+		BC9BEFC21D95449A008EBD68 /* MockBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9BEFC01D95449A008EBD68 /* MockBaseModel.swift */; };
 		BCA15B331C591B3E00DE7D54 /* GlobalConfigurationProductionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA15B321C591B3E00DE7D54 /* GlobalConfigurationProductionTest.swift */; };
 		BCA32A251C18906C0013A347 /* PaginatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA32A241C18906C0013A347 /* PaginatorTest.swift */; };
 		BCACC4101C5928C2008E7CE7 /* GlobalConfigurationSandboxTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA15B341C591ECD00DE7D54 /* GlobalConfigurationSandboxTest.swift */; };
@@ -252,6 +262,7 @@
 		BC02EB181C10503C00FCA0D9 /* TransactionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionRequest.swift; sourceTree = "<group>"; };
 		BC02EB1A1C1051B500FCA0D9 /* TransactionDenominationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDenominationRequest.swift; sourceTree = "<group>"; };
 		BC0C90221C4CF40400AD0F99 /* OAuth2ServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ServiceTest.swift; sourceTree = "<group>"; };
+		BC11E87F1D9E7C03006DE7F4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		BC12F44E1C10691E00EB2E2B /* TransactionCommitRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCommitRequest.swift; sourceTree = "<group>"; };
 		BC13CA7B1C9B274100207DAC /* CardRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardRequest.swift; sourceTree = "<group>"; };
 		BC1CFA451BDFCF1D00979038 /* LogicError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogicError.swift; sourceTree = "<group>"; };
@@ -296,7 +307,7 @@
 		BC3EE5941C1E3E9D0058478D /* PaginatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatorProtocol.swift; sourceTree = "<group>"; };
 		BC3FC4411C3BF0D700487CDC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC3FC4431C3BF0E600487CDC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC4110451C05E5F90063761C /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fixtures.swift; path = Util/Fixtures.swift; sourceTree = "<group>"; };
+		BC4110451C05E5F90063761C /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		BC4110471C05E6350063761C /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		BC41104A1C05E6400063761C /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		BC41104B1C05E6400063761C /* UserBalance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBalance.swift; sourceTree = "<group>"; };
@@ -305,21 +316,21 @@
 		BC4110501C05E68E0063761C /* Phone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
 		BC4110561C05E7270063761C /* Fakery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fakery.framework; path = Carthage/Build/iOS/Fakery.framework; sourceTree = "<group>"; };
 		BC431F421C57F51D000685DD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
-		BC4424141C56A06500FAC537 /* URLUtilsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLUtilsTest.swift; path = Util/URLUtilsTest.swift; sourceTree = "<group>"; };
-		BC4473C41BD64E2B003B4196 /* UpholdTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpholdTestCase.swift; path = Util/UpholdTestCase.swift; sourceTree = "<group>"; };
+		BC4424141C56A06500FAC537 /* URLUtilsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLUtilsTest.swift; sourceTree = "<group>"; };
+		BC4473C41BD64E2B003B4196 /* UpholdTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpholdTestCase.swift; sourceTree = "<group>"; };
 		BC4A30561BEA655B001B6249 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		BC4A306F1BEA657C001B6249 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		BC52369E1C5A3EF30088B62D /* ResourcesUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResourcesUtil.swift; path = Util/ResourcesUtil.swift; sourceTree = "<group>"; };
 		BC5236A11C5A41120088B62D /* ConfigurationMissingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationMissingError.swift; sourceTree = "<group>"; };
-		BC5C0A841BD4F77700CEF466 /* MockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRequest.swift; path = Util/MockRequest.swift; sourceTree = "<group>"; };
-		BC622E981BD546CA007E767C /* UpholdRestAdapterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpholdRestAdapterTest.swift; path = Client/UpholdRestAdapterTest.swift; sourceTree = "<group>"; };
+		BC5C0A841BD4F77700CEF466 /* MockRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRequest.swift; sourceTree = "<group>"; };
+		BC622E981BD546CA007E767C /* UpholdRestAdapterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpholdRestAdapterTest.swift; sourceTree = "<group>"; };
 		BC6330771C5783A9003DB6D8 /* Configurations.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Configurations.plist; sourceTree = "<group>"; };
 		BC6330781C5783BE003DB6D8 /* Configurations.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Configurations.plist; sourceTree = "<group>"; };
-		BC7E73FC1BEA7BB6006AAE0E /* UpholdClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpholdClientTest.swift; path = Client/UpholdClientTest.swift; sourceTree = "<group>"; };
-		BC7E74111BEA80D6006AAE0E /* MockRestAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockRestAdapter.swift; path = Util/MockRestAdapter.swift; sourceTree = "<group>"; };
+		BC7E73FC1BEA7BB6006AAE0E /* UpholdClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpholdClientTest.swift; sourceTree = "<group>"; };
+		BC7E74111BEA80D6006AAE0E /* MockRestAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockRestAdapter.swift; sourceTree = "<group>"; };
 		BC81F7011C0753BA0025A1AF /* NormalizedTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalizedTransaction.swift; sourceTree = "<group>"; };
 		BC8386CE1BF2458B00D67F98 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		BC8387171BF395A300D67F98 /* SessionManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionManagerTest.swift; path = Client/SessionManagerTest.swift; sourceTree = "<group>"; };
+		BC8387171BF395A300D67F98 /* SessionManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManagerTest.swift; sourceTree = "<group>"; };
 		BC8E25731BCFBB4F00C15899 /* ApiLimitExceedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiLimitExceedError.swift; sourceTree = "<group>"; };
 		BC91E8851BECD80C0074C538 /* Reserve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reserve.swift; sourceTree = "<group>"; };
 		BC91E89B1BECD8270074C538 /* Deposit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deposit.swift; path = Reserve/Deposit.swift; sourceTree = "<group>"; };
@@ -330,24 +341,29 @@
 		BC91E8A51BECDB030074C538 /* ReserveTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReserveTest.swift; sourceTree = "<group>"; };
 		BC9510CD1C0B92F800E2EDE1 /* UnexpectedResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnexpectedResponseError.swift; sourceTree = "<group>"; };
 		BC98A4B51C3BE80B00C60A3D /* GlobalConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfigurations.swift; sourceTree = "<group>"; };
+		BC9BEFB41D944837008EBD68 /* MockSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSessionManager.swift; sourceTree = "<group>"; };
+		BC9BEFB71D944A5A008EBD68 /* MockKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockKeychain.swift; sourceTree = "<group>"; };
+		BC9BEFBA1D9538E0008EBD68 /* MockUpholdClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpholdClient.swift; sourceTree = "<group>"; };
+		BC9BEFBD1D9543F7008EBD68 /* MockToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockToken.swift; sourceTree = "<group>"; };
+		BC9BEFC01D95449A008EBD68 /* MockBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBaseModel.swift; sourceTree = "<group>"; };
 		BCA15B321C591B3E00DE7D54 /* GlobalConfigurationProductionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfigurationProductionTest.swift; sourceTree = "<group>"; };
 		BCA15B341C591ECD00DE7D54 /* GlobalConfigurationSandboxTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfigurationSandboxTest.swift; sourceTree = "<group>"; };
 		BCA32A241C18906C0013A347 /* PaginatorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatorTest.swift; sourceTree = "<group>"; };
 		BCACC42E1C5928C2008E7CE7 /* UpholdSdkSandboxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UpholdSdkSandboxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB089901BD52DC20097C475 /* UpholdRestAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpholdRestAdapter.swift; sourceTree = "<group>"; };
-		BCC1EB2E1BE3939800F37B7D /* UpholdClientErrorHandlingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpholdClientErrorHandlingTest.swift; path = ErrorHandling/UpholdClientErrorHandlingTest.swift; sourceTree = "<group>"; };
+		BCC1EB2E1BE3939800F37B7D /* UpholdClientErrorHandlingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpholdClientErrorHandlingTest.swift; sourceTree = "<group>"; };
 		BCC392FC1CE645FA00091B19 /* AccountsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsService.swift; sourceTree = "<group>"; };
 		BCC392FF1CE646D700091B19 /* AccountsServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsServiceTest.swift; sourceTree = "<group>"; };
 		BCC393021CE64E5700091B19 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		BCC9D7181C56377E00671171 /* UpholdSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UpholdSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BCC9E0AF1BD10F4300C5C3C8 /* HeaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderTest.swift; path = Util/HeaderTest.swift; sourceTree = "<group>"; };
+		BCC9E0AF1BD10F4300C5C3C8 /* HeaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTest.swift; sourceTree = "<group>"; };
 		BCCBE5561BC6924A00D61852 /* UpholdClientErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpholdClientErrorHandling.swift; sourceTree = "<group>"; };
 		BCCBE5611BC692E200D61852 /* AuthenticationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		BCCBE5621BC692E200D61852 /* BadRequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadRequestError.swift; sourceTree = "<group>"; };
 		BCCBE5631BC692E200D61852 /* UpholdClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpholdClientError.swift; sourceTree = "<group>"; };
 		BCCBE5641BC692E200D61852 /* NotFoundError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFoundError.swift; sourceTree = "<group>"; };
 		BCCBE5651BC692E200D61852 /* UnhandledError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnhandledError.swift; sourceTree = "<group>"; };
-		BCCD62FF1C60D00E0087330A /* ResourcesUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResourcesUtilTest.swift; path = Util/ResourcesUtilTest.swift; sourceTree = "<group>"; };
+		BCCD62FF1C60D00E0087330A /* ResourcesUtilTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourcesUtilTest.swift; sourceTree = "<group>"; };
 		BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Sandbox.xcconfig; sourceTree = "<group>"; };
 		BCE7757B1C565D67005CE55A /* URLUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLUtils.swift; path = Util/URLUtils.swift; sourceTree = "<group>"; };
@@ -358,7 +374,7 @@
 		BCEB62441BFE28A600094F3A /* OMGHTTPURLRQ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OMGHTTPURLRQ.framework; path = Carthage/Build/iOS/OMGHTTPURLRQ.framework; sourceTree = "<group>"; };
 		BCEB62451BFE28A600094F3A /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		BCEB62461BFE28A600094F3A /* SwiftClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftClient.framework; path = Carthage/Build/iOS/SwiftClient.framework; sourceTree = "<group>"; };
-		BCF38A621C0DFD1B0075E477 /* JSONTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONTestUtils.swift; path = Util/JSONTestUtils.swift; sourceTree = "<group>"; };
+		BCF38A621C0DFD1B0075E477 /* JSONTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTestUtils.swift; sourceTree = "<group>"; };
 		BCF4D37E1C62112D00E4BDDA /* Fee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fee.swift; sourceTree = "<group>"; };
 		BCF4D3831C62116900E4BDDA /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		BCF4D3851C62116900E4BDDA /* Send.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Send.swift; sourceTree = "<group>"; };
@@ -551,27 +567,27 @@
 			isa = PBXGroup;
 			children = (
 				BC3FC4431C3BF0E600487CDC /* Info.plist */,
-				BC2381791BB4627C0060CC80 /* Integration */,
-				BCA15B311C591B3E00DE7D54 /* Unit */,
-				BC5C0A7B1BD4F6F800CEF466 /* Util */,
+				BC2381791BB4627C0060CC80 /* IntegrationTests */,
+				BCA15B311C591B3E00DE7D54 /* UnitTests */,
+				BC5C0A7B1BD4F6F800CEF466 /* UtilTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		BC2381791BB4627C0060CC80 /* Integration */ = {
+		BC2381791BB4627C0060CC80 /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
-				BCF5C69A1BCFE82200B6DFAC /* Client */,
-				BC995DA71BDFD9B50031FA5E /* ErrorHandling */,
-				BC38D9FA1BB97E4F0044239A /* Service */,
-				BC23817A1BB4627C0060CC80 /* Model */,
-				BCA32A231C18904E0013A347 /* Paginator */,
-				BCC9E0AE1BD10F0500C5C3C8 /* Util */,
+				BCF5C69A1BCFE82200B6DFAC /* ClientTests */,
+				BC995DA71BDFD9B50031FA5E /* ErrorHandlingTests */,
+				BC38D9FA1BB97E4F0044239A /* ServiceTests */,
+				BC23817A1BB4627C0060CC80 /* ModelTests */,
+				BCA32A231C18904E0013A347 /* PaginatorTests */,
+				BCC9E0AE1BD10F0500C5C3C8 /* UtilTests */,
 			);
-			path = Integration;
+			path = IntegrationTests;
 			sourceTree = "<group>";
 		};
-		BC23817A1BB4627C0060CC80 /* Model */ = {
+		BC23817A1BB4627C0060CC80 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
 				BC23817B1BB4627C0060CC80 /* CardTest.swift */,
@@ -580,10 +596,10 @@
 				BC23817D1BB4627C0060CC80 /* TransactionTest.swift */,
 				BC23817E1BB4627C0060CC80 /* UserTest.swift */,
 			);
-			path = Model;
+			path = ModelTests;
 			sourceTree = "<group>";
 		};
-		BC38D9FA1BB97E4F0044239A /* Service */ = {
+		BC38D9FA1BB97E4F0044239A /* ServiceTests */ = {
 			isa = PBXGroup;
 			children = (
 				BCC392FF1CE646D700091B19 /* AccountsServiceTest.swift */,
@@ -593,7 +609,7 @@
 				BC38D9FD1BB97E4F0044239A /* UserCardServiceTest.swift */,
 				BC38D9FE1BB97E4F0044239A /* UserServiceTest.swift */,
 			);
-			path = Service;
+			path = ServiceTests;
 			sourceTree = "<group>";
 		};
 		BC3EE5921C1E3E9D0058478D /* Paginator */ = {
@@ -614,16 +630,21 @@
 			path = Balance;
 			sourceTree = "<group>";
 		};
-		BC5C0A7B1BD4F6F800CEF466 /* Util */ = {
+		BC5C0A7B1BD4F6F800CEF466 /* UtilTests */ = {
 			isa = PBXGroup;
 			children = (
 				BC4110451C05E5F90063761C /* Fixtures.swift */,
 				BCF38A621C0DFD1B0075E477 /* JSONTestUtils.swift */,
+				BC9BEFC01D95449A008EBD68 /* MockBaseModel.swift */,
+				BC9BEFB71D944A5A008EBD68 /* MockKeychain.swift */,
 				BC5C0A841BD4F77700CEF466 /* MockRequest.swift */,
-				BC4473C41BD64E2B003B4196 /* UpholdTestCase.swift */,
 				BC7E74111BEA80D6006AAE0E /* MockRestAdapter.swift */,
+				BC9BEFB41D944837008EBD68 /* MockSessionManager.swift */,
+				BC9BEFBD1D9543F7008EBD68 /* MockToken.swift */,
+				BC9BEFBA1D9538E0008EBD68 /* MockUpholdClient.swift */,
+				BC4473C41BD64E2B003B4196 /* UpholdTestCase.swift */,
 			);
-			name = Util;
+			path = UtilTests;
 			sourceTree = "<group>";
 		};
 		BC8939521C3EC7740012BC52 /* Production */ = {
@@ -673,39 +694,39 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
-		BC995DA71BDFD9B50031FA5E /* ErrorHandling */ = {
+		BC995DA71BDFD9B50031FA5E /* ErrorHandlingTests */ = {
 			isa = PBXGroup;
 			children = (
 				BCC1EB2E1BE3939800F37B7D /* UpholdClientErrorHandlingTest.swift */,
 			);
-			name = ErrorHandling;
+			path = ErrorHandlingTests;
 			sourceTree = "<group>";
 		};
-		BCA15B311C591B3E00DE7D54 /* Unit */ = {
+		BCA15B311C591B3E00DE7D54 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
 				BCA15B321C591B3E00DE7D54 /* GlobalConfigurationProductionTest.swift */,
 				BCA15B341C591ECD00DE7D54 /* GlobalConfigurationSandboxTest.swift */,
 			);
-			path = Unit;
+			path = UnitTests;
 			sourceTree = "<group>";
 		};
-		BCA32A231C18904E0013A347 /* Paginator */ = {
+		BCA32A231C18904E0013A347 /* PaginatorTests */ = {
 			isa = PBXGroup;
 			children = (
 				BCA32A241C18906C0013A347 /* PaginatorTest.swift */,
 			);
-			path = Paginator;
+			path = PaginatorTests;
 			sourceTree = "<group>";
 		};
-		BCC9E0AE1BD10F0500C5C3C8 /* Util */ = {
+		BCC9E0AE1BD10F0500C5C3C8 /* UtilTests */ = {
 			isa = PBXGroup;
 			children = (
 				BCC9E0AF1BD10F4300C5C3C8 /* HeaderTest.swift */,
 				BC4424141C56A06500FAC537 /* URLUtilsTest.swift */,
 				BCCD62FF1C60D00E0087330A /* ResourcesUtilTest.swift */,
 			);
-			name = Util;
+			path = UtilTests;
 			sourceTree = "<group>";
 		};
 		BCCBE55F1BC692E200D61852 /* ErrorHandling */ = {
@@ -730,6 +751,7 @@
 		BCEB624E1BFE28B500094F3A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC11E87F1D9E7C03006DE7F4 /* MobileCoreServices.framework */,
 				BC4110561C05E7270063761C /* Fakery.framework */,
 				BCEB62421BFE28A600094F3A /* KeychainSwift.framework */,
 				BCEB62431BFE28A600094F3A /* ObjectMapper.framework */,
@@ -779,14 +801,14 @@
 			path = Withdraw;
 			sourceTree = "<group>";
 		};
-		BCF5C69A1BCFE82200B6DFAC /* Client */ = {
+		BCF5C69A1BCFE82200B6DFAC /* ClientTests */ = {
 			isa = PBXGroup;
 			children = (
 				BC8387171BF395A300D67F98 /* SessionManagerTest.swift */,
 				BC622E981BD546CA007E767C /* UpholdRestAdapterTest.swift */,
 				BC7E73FC1BEA7BB6006AAE0E /* UpholdClientTest.swift */,
 			);
-			name = Client;
+			path = ClientTests;
 			sourceTree = "<group>";
 		};
 		BCF656C31BCFCEAE008E2F97 /* Util */ = {
@@ -905,14 +927,23 @@
 		BC2381231BB462170060CC80 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Uphold;
 				TargetAttributes = {
 					BC23812B1BB462170060CC80 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					BC2381351BB462180060CC80 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
+					};
+					BCACC4091C5928C2008E7CE7 = {
+						LastSwiftMigration = 0800;
+					};
+					BCC9D6D31C56377E00671171 = {
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -996,7 +1027,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/URITemplate.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OMGHTTPURLRQ.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Fakery.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			name = "Carthage Dependencies Run Script";
 			outputPaths = (
@@ -1019,7 +1049,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/URITemplate.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OMGHTTPURLRQ.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Fakery.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			name = "Carthage Dependencies Run Script";
 			outputPaths = (
@@ -1190,7 +1219,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC9BEFBE1D9543F7008EBD68 /* MockToken.swift in Sources */,
 				BCA32A251C18906C0013A347 /* PaginatorTest.swift in Sources */,
+				BC9BEFB81D944A5A008EBD68 /* MockKeychain.swift in Sources */,
+				BC9BEFBB1D9538E0008EBD68 /* MockUpholdClient.swift in Sources */,
+				BC9BEFC11D95449A008EBD68 /* MockBaseModel.swift in Sources */,
 				BC38DA021BB97E4F0044239A /* UserServiceTest.swift in Sources */,
 				BC0C90231C4CF40400AD0F99 /* OAuth2ServiceTest.swift in Sources */,
 				BC38DA011BB97E4F0044239A /* UserCardServiceTest.swift in Sources */,
@@ -1212,6 +1245,7 @@
 				BC7E74121BEA80D6006AAE0E /* MockRestAdapter.swift in Sources */,
 				BCC393001CE646D800091B19 /* AccountsServiceTest.swift in Sources */,
 				BC622E991BD546CA007E767C /* UpholdRestAdapterTest.swift in Sources */,
+				BC9BEFB51D944837008EBD68 /* MockSessionManager.swift in Sources */,
 				BC4424151C56A06500FAC537 /* URLUtilsTest.swift in Sources */,
 				BC2381811BB4627C0060CC80 /* RateTest.swift in Sources */,
 				BC5C0A851BD4F77700CEF466 /* MockRequest.swift in Sources */,
@@ -1222,7 +1256,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC9BEFBF1D9543F7008EBD68 /* MockToken.swift in Sources */,
 				BC0F492B1C5BDA0B00FAE568 /* OAuth2ServiceTest.swift in Sources */,
+				BC9BEFB91D944A5A008EBD68 /* MockKeychain.swift in Sources */,
+				BC9BEFBC1D9538E0008EBD68 /* MockUpholdClient.swift in Sources */,
+				BC9BEFC21D95449A008EBD68 /* MockBaseModel.swift in Sources */,
 				BC0F492C1C5BDA0B00FAE568 /* URLUtilsTest.swift in Sources */,
 				BC865B651C59411F003D67E5 /* SessionManagerTest.swift in Sources */,
 				BC865B661C59411F003D67E5 /* UpholdRestAdapterTest.swift in Sources */,
@@ -1244,6 +1282,7 @@
 				BC865B751C59411F003D67E5 /* JSONTestUtils.swift in Sources */,
 				BCC393011CE646D800091B19 /* AccountsServiceTest.swift in Sources */,
 				BC865B761C59411F003D67E5 /* MockRequest.swift in Sources */,
+				BC9BEFB61D944837008EBD68 /* MockSessionManager.swift in Sources */,
 				BC865B771C59411F003D67E5 /* UpholdTestCase.swift in Sources */,
 				BC865B781C59411F003D67E5 /* MockRestAdapter.swift in Sources */,
 				BCACC4101C5928C2008E7CE7 /* GlobalConfigurationSandboxTest.swift in Sources */,
@@ -1364,8 +1403,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1414,8 +1455,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1437,6 +1480,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1448,6 +1492,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1463,6 +1508,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdk;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = ProductionDebug;
@@ -1471,6 +1517,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1486,6 +1533,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdk;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = ProductionRelease;
@@ -1494,6 +1542,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1502,6 +1553,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdkTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = ProductionDebug;
 		};
@@ -1509,6 +1561,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1517,6 +1572,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdkTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = ProductionRelease;
 		};
@@ -1524,6 +1580,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1532,6 +1589,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = ProductionDebug;
 		};
@@ -1539,6 +1597,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1547,6 +1606,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = SandboxDebug;
 		};
@@ -1554,6 +1614,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1562,6 +1623,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = ProductionRelease;
 		};
@@ -1569,6 +1631,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1577,6 +1640,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = SandboxRelease;
 		};
@@ -1584,6 +1648,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1599,6 +1664,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdk;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = ProductionDebug;
@@ -1607,6 +1673,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1622,6 +1689,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdk;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = ProductionRelease;
@@ -1639,8 +1707,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1680,6 +1750,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1695,6 +1766,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdk;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = SandboxDebug;
@@ -1703,6 +1775,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1718,6 +1791,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdk;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = SandboxDebug;
@@ -1726,6 +1800,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1734,6 +1811,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdkTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = SandboxDebug;
 		};
@@ -1750,8 +1828,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1773,6 +1853,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1784,6 +1865,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2B1C3FE19B002E02B3 /* Production.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1799,6 +1881,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdk;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = SandboxRelease;
@@ -1807,6 +1890,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1822,6 +1906,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdk;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = SandboxRelease;
@@ -1830,6 +1915,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE6DF2C1C3FE1BC002E02B3 /* Sandbox.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -1838,6 +1926,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.uphold.sdk;
 				PRODUCT_NAME = UpholdSdkTests;
+				SWIFT_VERSION = 3.0;
 			};
 			name = SandboxRelease;
 		};

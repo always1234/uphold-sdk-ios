@@ -4,7 +4,7 @@ import PromiseKit
 import SwiftClient
 
 /// Uphold REST adapter.
-public class UpholdRestAdapter {
+open class UpholdRestAdapter {
 
     /**
       Constructor.
@@ -19,14 +19,14 @@ public class UpholdRestAdapter {
 
       - returns: The configured HTTP request.
     */
-    public func buildRequest(request: Request) -> Request {
+    open func buildRequest(request: Request) -> Request {
         guard let bearerToken = SessionManager.sharedInstance.getBearerToken() else {
-            return request.set(Header.getDefaultHeaders())
+            return request.set(headers: Header.getDefaultHeaders())
         }
 
-        request.set(Header.getDefaultHeaders())
+        _ = request.set(headers: Header.getDefaultHeaders())
 
-        return request.set(Header.buildAuthorizationHeader(bearerToken))
+        return request.set(headers: Header.buildAuthorizationHeader(token: bearerToken))
     }
 
     /**
@@ -36,22 +36,22 @@ public class UpholdRestAdapter {
 
       - returns: A promise of Response.
     */
-    public func buildEmptyResponse(request: Request) -> Promise<Response> {
+    open func buildEmptyResponse(request: Request) -> Promise<Response> {
         return Promise { fulfill, reject in
-            request.end({ (response: Response) -> Void in
-                if (response.basicStatus != Response.BasicResponseType.OK) {
-                    reject(UpholdClientErrorHandling.handleError(response))
+            request.end(done: { (response: Response) -> Void in
+                if (response.basicStatus != Response.BasicResponseType.ok) {
+                    reject(UpholdClientErrorHandling.handleError(response: response))
 
                     return
                 }
 
-                if let body = response.text where !body.isEmpty {
+                if let body = response.text, !body.isEmpty {
                     reject(LogicError(code: nil, message: "Response body should be empty."))
                 } else {
                     fulfill(response)
                 }
 
-                }, onError: { (error: NSError) -> Void in
+                }, onError: { (error: Error) -> Void in
                     reject(error)
             })
         }
@@ -64,11 +64,11 @@ public class UpholdRestAdapter {
 
       - returns: A promise of T object.
     */
-    public func buildResponse<T: Mappable>(request: Request) -> Promise<T> {
+    open func buildResponse<T: Mappable>(request: Request) -> Promise<T> {
         return Promise { fulfill, reject in
-            request.end({ (response: Response) -> Void in
-                if (response.basicStatus != Response.BasicResponseType.OK) {
-                    reject(UpholdClientErrorHandling.handleError(response))
+            request.end(done: { (response: Response) -> Void in
+                if (response.basicStatus != Response.BasicResponseType.ok) {
+                    reject(UpholdClientErrorHandling.handleError(response: response))
 
                     return
                 }
@@ -79,14 +79,14 @@ public class UpholdRestAdapter {
                     return
                 }
 
-                guard let object: T = Mapper<T>().map(body) else {
+                guard let object: T = Mapper<T>().map(JSONString: body) else {
                     reject(LogicError(code: nil, message: "Failed to map the JSON object."))
 
                     return
                 }
 
                 fulfill(object)
-                }) { (error: NSError) -> Void in
+                }) { (error: Error) -> Void in
                     reject(error)
             }
         }
@@ -99,11 +99,11 @@ public class UpholdRestAdapter {
 
       - returns: A promise of an array of T objects.
     */
-    public func buildResponse<T: Mappable>(request: Request) -> Promise<[T]> {
+    open func buildResponse<T: Mappable>(request: Request) -> Promise<[T]> {
         return Promise { fulfill, reject in
-            request.end({ (response: Response) -> Void in
-                if (response.basicStatus != Response.BasicResponseType.OK) {
-                    reject(UpholdClientErrorHandling.handleError(response))
+            request.end(done: { (response: Response) -> Void in
+                if (response.basicStatus != Response.BasicResponseType.ok) {
+                    reject(UpholdClientErrorHandling.handleError(response: response))
 
                     return
                 }
@@ -114,14 +114,14 @@ public class UpholdRestAdapter {
                     return
                 }
 
-                guard let object: [T] = Mapper<T>().mapArray(body) else {
+                guard let object: [T] = Mapper<T>().mapArray(JSONString: body) else {
                     reject(LogicError(code: nil, message: "Failed to map the JSON object."))
 
                     return
                 }
 
                 fulfill(object)
-                }) { (error: NSError) -> Void in
+                }) { (error: Error) -> Void in
                     reject(error)
             }
         }

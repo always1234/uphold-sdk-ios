@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
       - returns: A boolean indicating if the application was launch successfully.
     */
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
 
         guard let window = self.window else {
             return false
@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
       - returns: A boolean indicating if the application can handle the URL resource or continue a user activity.
     */
-    func application(application: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        guard let window = self.window, rootViewController = window.rootViewController, loginViewController = rootViewController as? LoginViewController else {
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        guard let window = self.window, let rootViewController = window.rootViewController, let loginViewController = rootViewController as? LoginViewController else {
             return false
         }
 

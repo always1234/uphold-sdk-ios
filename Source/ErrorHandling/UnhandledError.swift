@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// UnhandledError error.
-public class UnhandledError: UpholdClientError {
+open class UnhandledError: UpholdClientError {
 
     /**
       Constructor.

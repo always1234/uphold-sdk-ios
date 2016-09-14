@@ -2,7 +2,7 @@ import Foundation
 import KeychainSwift
 
 /// Session manager.
-public class SessionManager {
+open class SessionManager {
 
     /// The keychain key to access the bearer token.
     static let KEYCHAIN_TOKEN_KEY = "com.uphold.sdk.token"
@@ -14,14 +14,14 @@ public class SessionManager {
     let keychain: KeychainSwift
 
     /// Queue to manage concurrency.
-    let lockQueue: dispatch_queue_t
+    let lockQueue: DispatchQueue
 
     /**
       Constructor.
      */
     private init() {
         self.keychain = KeychainSwift()
-        self.lockQueue = dispatch_queue_create(GlobalConfigurations.BUNDLE_NAME, nil)
+        self.lockQueue = DispatchQueue(label: GlobalConfigurations.BUNDLE_NAME, attributes: [])
 
         self.invalidateSession()
     }
@@ -47,7 +47,7 @@ public class SessionManager {
     func setBearerToken(token: String) {
         self.invalidateSession()
 
-        dispatch_sync(self.lockQueue) {
+        _ = self.lockQueue.sync {
             self.keychain.set(token, forKey: SessionManager.KEYCHAIN_TOKEN_KEY)
         }
     }
@@ -56,7 +56,7 @@ public class SessionManager {
       Deletes the bearer token from the keychain.
      */
     func invalidateSession() {
-        dispatch_sync(self.lockQueue) {
+        _ = self.lockQueue.sync {
             self.keychain.delete(SessionManager.KEYCHAIN_TOKEN_KEY)
         }
     }

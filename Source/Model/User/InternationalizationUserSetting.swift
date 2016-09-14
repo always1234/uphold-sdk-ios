@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// InternationalizationUserSetting model.
-public class InternationalizationUserSetting: Mappable {
+open class InternationalizationUserSetting: Mappable {
 
     /// The locale for the setting.
     public private(set) final var locale: String?
@@ -23,7 +23,7 @@ public class InternationalizationUserSetting: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -31,7 +31,7 @@ public class InternationalizationUserSetting: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         locale  <- map["locale"]
     }
 

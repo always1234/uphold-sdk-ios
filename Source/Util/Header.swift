@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// Header util class.
-public class Header {
+open class Header {
 
     /**
       Builds the authorization header.
@@ -11,7 +11,7 @@ public class Header {
 
       - returns: The authorization header.
      */
-    public static func buildAuthorizationHeader(token: String) -> [String: String] {
+    open static func buildAuthorizationHeader(token: String) -> [String: String] {
         return ["authorization": String(format: "Bearer %@", token)]
     }
 
@@ -23,7 +23,7 @@ public class Header {
 
      - returns: The string with the header value.
      */
-    public static func buildRangeHeader(start: Int, end: Int) -> String {
+    open static func buildRangeHeader(start: Int, end: Int) -> String {
         return String(format: "items=%i-%i", start, end)
     }
 
@@ -32,7 +32,7 @@ public class Header {
 
       - returns: The default headers.
     */
-    public static func getDefaultHeaders() -> [String: String] {
+    open static func getDefaultHeaders() -> [String: String] {
         let headers: [String: String] = ["user-agent": String(format: "uphold-ios-sdk/%@ (%@)", GlobalConfigurations.UPHOLD_SDK_VERSION, GlobalConfigurations.SDK_GITHUB_URL)]
 
         return headers
@@ -45,7 +45,7 @@ public class Header {
 
       - returns: The rate limit value.
     */
-    public static func getRateLimitValue(headers: [String: String]) -> String? {
+    open static func getRateLimitValue(headers: [String: String]) -> String? {
         guard let rateLimit = headers["x-ratelimit-limit"] else {
             return nil
         }
@@ -60,7 +60,7 @@ public class Header {
 
       - returns: The rate limit reset time.
     */
-    public static func getSecondsUntilRateLimitReset(headers: [String: String]) -> String? {
+    open static func getSecondsUntilRateLimitReset(headers: [String: String]) -> String? {
         guard let resetTime = headers["retry-after"] else {
             return nil
         }
@@ -75,12 +75,12 @@ public class Header {
 
       - returns: The total number of elements.
     */
-    public static func getTotalNumberOfResults(headers: [String: String]) -> Int? {
+    open static func getTotalNumberOfResults(headers: [String: String]) -> Int? {
         guard let contentRange = headers["content-range"] else {
             return nil
         }
 
-        return NSString(string: contentRange.substringFromIndex(contentRange.rangeOfString("/")!.endIndex)).integerValue
+        return NSString(string: contentRange.substring(from: contentRange.range(of: "/")!.upperBound)).integerValue
     }
 
 }

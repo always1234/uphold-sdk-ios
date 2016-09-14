@@ -2,7 +2,7 @@ import Foundation
 import PromiseKit
 
 /// Token model.
-public class Token: BaseModel {
+open class Token: BaseModel {
 
     /// The bearer token.
     private(set) final var bearerToken: String?
@@ -30,12 +30,12 @@ public class Token: BaseModel {
 
       - returns: A promise with the user.
      */
-    public func getUser() -> Promise<User> {
+    open func getUser() -> Promise<User> {
         guard let _ = SessionManager.sharedInstance.getBearerToken() else {
             return Promise<User>(error: AuthenticationRequiredError(message: "Missing bearer authorization"))
         }
 
-        return adapter.buildResponse(adapter.buildRequest(UserService.getUser()))
+        return adapter.buildResponse(request: adapter.buildRequest(request: UserService.getUser()))
     }
 
 }

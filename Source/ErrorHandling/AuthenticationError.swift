@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// AuthenticationError error.
-public class AuthenticationError: UpholdClientError {
+open class AuthenticationError: UpholdClientError {
 
     /**
       Constructor.

@@ -4,7 +4,7 @@ import PromiseKit
 import SwiftClient
 
 /// Card model.
-public class Card: BaseModel, Mappable {
+open class Card: BaseModel, Mappable {
 
     /// The id of the card.
     public private(set) final var id: String?
@@ -65,7 +65,7 @@ public class Card: BaseModel, Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -73,7 +73,7 @@ public class Card: BaseModel, Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.id <- map["id"]
         self.address <- map["address"]
         self.available <- map["available"]
@@ -92,14 +92,14 @@ public class Card: BaseModel, Mappable {
 
       - returns: A promise with the created address.
     */
-    public func createAddress(addressRequest: AddressRequest) -> Promise<Address> {
+    open func createAddress(addressRequest: AddressRequest) -> Promise<Address> {
         guard let id = self.id else {
             return Promise<Address>(error: UnexpectedResponseError(message: "Card id should not be nil."))
         }
 
-        let request = self.adapter.buildRequest(UserCardService.createCardAddress(id, addressRequest: Mapper().toJSON(addressRequest)))
+        let request = self.adapter.buildRequest(request: UserCardService.createCardAddress(cardId: id, addressRequest: Mapper().toJSON(addressRequest)))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -109,8 +109,8 @@ public class Card: BaseModel, Mappable {
 
       - returns: A promise with the transaction.
     */
-    public func createTransaction(transactionRequest: TransactionRequest) -> Promise<Transaction> {
-        return createTransaction(false, transactionRequest: transactionRequest)
+    open func createTransaction(transactionRequest: TransactionRequest) -> Promise<Transaction> {
+        return createTransaction(commit: false, transactionRequest: transactionRequest)
     }
 
     /**
@@ -121,14 +121,14 @@ public class Card: BaseModel, Mappable {
 
       - returns: A promise with the transaction.
     */
-    public func createTransaction(commit: Bool, transactionRequest: TransactionRequest) -> Promise<Transaction> {
+    open func createTransaction(commit: Bool, transactionRequest: TransactionRequest) -> Promise<Transaction> {
         guard let id = self.id else {
             return Promise<Transaction>(error: UnexpectedResponseError(message: "Card id should not be nil."))
         }
 
-        let request = self.adapter.buildRequest(UserCardService.createTransaction(id, commit: commit, transactionRequest: Mapper().toJSON(transactionRequest)))
+        let request = self.adapter.buildRequest(request: UserCardService.createTransaction(cardId: id, commit: commit, transactionRequest: Mapper().toJSON(transactionRequest)))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -136,7 +136,7 @@ public class Card: BaseModel, Mappable {
 
       - returns: A paginator with the list of transactions for the current card.
     */
-    public func getTransactions() -> Paginator<Transaction> {
+    open func getTransactions() -> Paginator<Transaction> {
         guard let id = self.id else {
             let error = UnexpectedResponseError(message: "Card id should not be nil.")
 
@@ -152,12 +152,12 @@ public class Card: BaseModel, Mappable {
                 })
         }
 
-        let request = self.adapter.buildRequest(UserCardService.getUserCardTransactions(id, range: Header.buildRangeHeader(Paginator<Transaction>.DEFAULT_START, end: Paginator<Transaction>.DEFAULT_OFFSET - 1)))
+        let request = self.adapter.buildRequest(request: UserCardService.getUserCardTransactions(cardId: id, range: Header.buildRangeHeader(start: Paginator<Transaction>.DEFAULT_START, end: Paginator<Transaction>.DEFAULT_OFFSET - 1)))
 
         let paginator: Paginator<Transaction> = Paginator(countClosure: { () -> Promise<Int> in
                 return Promise { fulfill, reject in
-                    self.adapter.buildRequest(UserCardService.getUserCardTransactions(id, range: Header.buildRangeHeader(0, end: 1))).end({ (response: Response) -> Void in
-                        guard let count = Header.getTotalNumberOfResults(response.headers) else {
+                    self.adapter.buildRequest(request: UserCardService.getUserCardTransactions(cardId: id, range: Header.buildRangeHeader(start: 0, end: 1))).end(done: { (response: Response) -> Void in
+                        guard let count = Header.getTotalNumberOfResults(headers: response.headers) else {
                             reject(UnexpectedResponseError(message: "Content-Type header should not be nil."))
 
                             return
@@ -167,11 +167,11 @@ public class Card: BaseModel, Mappable {
                     })
                 }
             },
-            elements: self.adapter.buildResponse(request),
+            elements: self.adapter.buildResponse(request: request),
             hasNextPageClosure: { (currentPage) -> Promise<Bool> in
                 return Promise { fulfill, reject in
-                    self.adapter.buildRequest(UserCardService.getUserCardTransactions(id, range: Header.buildRangeHeader(0, end: 1))).end({ (response: Response) -> Void in
-                        guard let count = Header.getTotalNumberOfResults(response.headers) else {
+                    self.adapter.buildRequest(request: UserCardService.getUserCardTransactions(cardId: id, range: Header.buildRangeHeader(start: 0, end: 1))).end(done: { (response: Response) -> Void in
+                        guard let count = Header.getTotalNumberOfResults(headers: response.headers) else {
                             reject(UnexpectedResponseError(message: "Content-Type header should not be nil."))
 
                             return
@@ -182,8 +182,8 @@ public class Card: BaseModel, Mappable {
                 }
             },
             nextPageClosure: { (range) -> Promise<[Transaction]> in
-                let request = self.adapter.buildRequest(UserCardService.getUserCardTransactions(id, range: range))
-                let promise: Promise<[Transaction]> = self.adapter.buildResponse(request)
+                let request = self.adapter.buildRequest(request: UserCardService.getUserCardTransactions(cardId: id, range: range))
+                let promise: Promise<[Transaction]> = self.adapter.buildResponse(request: request)
 
                 return promise
             })
@@ -198,14 +198,14 @@ public class Card: BaseModel, Mappable {
 
       - returns: A promise with the card updated.
     */
-    public func update(updateFields: [String: AnyObject]) -> Promise<Card> {
+    open func update(updateFields: [String: Any]) -> Promise<Card> {
         guard let id = self.id else {
             return Promise<Card>(error: UnexpectedResponseError(message: "Card id should not be nil."))
         }
 
-        let request = self.adapter.buildRequest(UserCardService.updateCard(id, updateFields: updateFields))
+        let request = self.adapter.buildRequest(request: UserCardService.updateCard(cardId: id, updateFields: updateFields))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
 }

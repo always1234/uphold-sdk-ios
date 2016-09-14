@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Card request model.
-public class CardRequest: Mappable {
+open class CardRequest: Mappable {
 
     /// The currency of the card.
     public private(set) final var currency: String?
@@ -44,7 +44,7 @@ public class CardRequest: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -52,7 +52,7 @@ public class CardRequest: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         currency  <- map["currency"]
         label <- map["label"]
         settings <- map["settings"]

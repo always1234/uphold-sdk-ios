@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Transactions otp settings model.
-public class Transactions: Mappable {
+open class Transactions: Mappable {
 
     /// The send transactions otp settings.
     public private(set) final var send: Send?
@@ -33,7 +33,7 @@ public class Transactions: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -41,7 +41,7 @@ public class Transactions: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.send <- map["send"]
         self.transfer <- map["transfer"]
         self.withdraw <- map["withdraw"]

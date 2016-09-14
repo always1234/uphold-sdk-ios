@@ -3,7 +3,7 @@ import ObjectMapper
 import PromiseKit
 
 /// Paginator model.
-public class Paginator<T>: PaginatorProtocol {
+open class Paginator<T>: PaginatorProtocol {
 
     /// Default offset page.
     static var DEFAULT_OFFSET: Int {
@@ -19,16 +19,16 @@ public class Paginator<T>: PaginatorProtocol {
     private var currentPage: Int
 
     /// A promise with the first list of elements.
-    public let elements: Promise<[T]>
+    open let elements: Promise<[T]>
 
     /// Closure to get a promise with the total number of elements.
     let countClosure: () -> Promise<Int>
 
     /// Closure to get a promise with a bolean indicating if exists a next page of elements.
-    let hasNextPageClosure: (currentPage: Int) -> Promise<Bool>
+    let hasNextPageClosure: (_ currentPage: Int) -> Promise<Bool>
 
     /// Closure to get a promise with the next page of elements.
-    let nextPageClosure: (range: String) -> Promise<[T]>
+    let nextPageClosure: (_ range: String) -> Promise<[T]>
 
     /**
       Constructor
@@ -38,7 +38,7 @@ public class Paginator<T>: PaginatorProtocol {
       - parameter hasNextPageClosure: A closure to check if there are more pages.
       - parameter nextPageClosure: A closure to get the next page of elements.
     */
-    init(countClosure: () -> Promise<Int>, elements: Promise<[T]>, hasNextPageClosure: (currentPage: Int) -> Promise<Bool>, nextPageClosure: (range: String) -> Promise<[T]>) {
+    init(countClosure: @escaping () -> Promise<Int>, elements: Promise<[T]>, hasNextPageClosure: @escaping (_ currentPage: Int) -> Promise<Bool>, nextPageClosure: @escaping (_ range: String) -> Promise<[T]>) {
         self.countClosure = countClosure
         self.currentPage = 1
         self.elements = elements
@@ -51,7 +51,7 @@ public class Paginator<T>: PaginatorProtocol {
 
       - returns: A promise with the total number of elements.
     */
-    public func count() -> Promise<Int> {
+    open func count() -> Promise<Int> {
         return countClosure()
     }
 
@@ -60,7 +60,7 @@ public class Paginator<T>: PaginatorProtocol {
 
       - returns: A promise with the array of elements.
     */
-    public func getNext() -> Promise<[T]> {
+    open func getNext() -> Promise<[T]> {
         defer {
             currentPage += 1
 
@@ -69,7 +69,7 @@ public class Paginator<T>: PaginatorProtocol {
 
         objc_sync_enter(self.currentPage)
 
-        let promise: Promise<[T]> = self.nextPageClosure(range: Header.buildRangeHeader((Paginator.DEFAULT_OFFSET * currentPage), end: ((Paginator.DEFAULT_OFFSET * currentPage) + Paginator.DEFAULT_OFFSET) - 1))
+        let promise: Promise<[T]> = self.nextPageClosure(Header.buildRangeHeader(start: (Paginator.DEFAULT_OFFSET * currentPage), end: ((Paginator.DEFAULT_OFFSET * currentPage) + Paginator.DEFAULT_OFFSET) - 1))
 
         return promise
     }
@@ -79,8 +79,8 @@ public class Paginator<T>: PaginatorProtocol {
 
       - returns: A promise with the bolean indicator.
     */
-    public func hasNext() -> Promise<Bool> {
-        return self.hasNextPageClosure(currentPage: self.currentPage)
+    open func hasNext() -> Promise<Bool> {
+        return self.hasNextPageClosure(self.currentPage)
     }
 
 }

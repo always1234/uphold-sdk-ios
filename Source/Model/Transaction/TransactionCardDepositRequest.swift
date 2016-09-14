@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Transaction card deposit request model.
-public class TransactionCardDepositRequest: TransactionDepositRequest {
+open class TransactionCardDepositRequest: TransactionDepositRequest {
 
     /// The card's security code.
     public private(set) final var securityCode: String?
@@ -27,8 +27,8 @@ public class TransactionCardDepositRequest: TransactionDepositRequest {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
-        super.init(map)
+    required public init?(map: Map) {
+        super.init(map: map)
     }
 
     /**
@@ -36,8 +36,8 @@ public class TransactionCardDepositRequest: TransactionDepositRequest {
 
       - parameter map: The object to map.
     */
-    public override func mapping(map: Map) {
-        super.mapping(map)
+    open override func mapping(map: Map) {
+        super.mapping(map: map)
 
         self.securityCode <- map["securityCode"]
     }

@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Otp settings model.
-public class Otp: Mappable {
+open class Otp: Mappable {
 
     /// The login otp settings.
     public private(set) final var login: Login?
@@ -28,7 +28,7 @@ public class Otp: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -36,7 +36,7 @@ public class Otp: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.login <- map["login"]
         self.transactions <- map["transactions"]
     }

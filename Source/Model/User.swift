@@ -4,7 +4,7 @@ import PromiseKit
 import SwiftClient
 
 /// User model.
-public class User: BaseModel, Mappable {
+open class User: BaseModel, Mappable {
 
     /// The user country.
     public private(set) final var country: String?
@@ -70,7 +70,7 @@ public class User: BaseModel, Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -78,7 +78,7 @@ public class User: BaseModel, Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.country <- map["country"]
         self.currencies <- map["currencies"]
         self.email <- map["email"]
@@ -98,10 +98,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the created card.
     */
-    public func createCard(cardRequest: CardRequest) -> Promise<Card> {
-        let request = self.adapter.buildRequest(UserCardService.createUserCard(Mapper().toJSON(cardRequest)))
+    open func createCard(cardRequest: CardRequest) -> Promise<Card> {
+        let request = self.adapter.buildRequest(request: UserCardService.createUserCard(cardRequest: Mapper().toJSON(cardRequest)))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -111,10 +111,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the created contact.
      */
-    public func createContact(contactRequest: ContactRequest) -> Promise<Contact> {
-        let request = self.adapter.buildRequest(UserService.createContact(Mapper().toJSON(contactRequest)))
+    open func createContact(contactRequest: ContactRequest) -> Promise<Contact> {
+        let request = self.adapter.buildRequest(request: UserService.createContact(contactRequest: Mapper().toJSON(contactRequest)))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -122,10 +122,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the user accounts list.
     */
-    public func getAccounts() -> Promise<[Account]> {
-        let request = self.adapter.buildRequest(AccountsService.getUserAccounts())
+    open func getAccounts() -> Promise<[Account]> {
+        let request = self.adapter.buildRequest(request: AccountsService.getUserAccounts())
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -135,10 +135,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the user account.
     */
-    public func getAccountById(accountId: String) -> Promise<Account> {
-        let request = self.adapter.buildRequest(AccountsService.getUserAccountById(accountId))
+    open func getAccountById(accountId: String) -> Promise<Account> {
+        let request = self.adapter.buildRequest(request: AccountsService.getUserAccountById(accountId: accountId))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -146,9 +146,9 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the user balance.
      */
-    public func getBalances() -> Promise<[Currency]> {
-        let request = self.adapter.buildRequest(UserService.getUserBalances())
-        let balance: Promise<Balance> = self.adapter.buildResponse(request)
+    open func getBalances() -> Promise<[Currency]> {
+        let request = self.adapter.buildRequest(request: UserService.getUserBalances())
+        let balance: Promise<Balance> = self.adapter.buildResponse(request: request)
 
         return balance.then { (balance: Balance) -> Promise<[Currency]> in
             return Promise { fulfill, reject in
@@ -166,7 +166,7 @@ public class User: BaseModel, Mappable {
                     return
                 }
 
-                currencies.sort({$0.0 < $1.0}).forEach({ (currency: (String, Currency)) -> () in
+                currencies.sorted(by: {$0.0 < $1.0}).forEach({ (currency: (String, Currency)) -> () in
                     responseCurrencies.append(currency.1)
                 })
 
@@ -182,9 +182,9 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the user balance for the currency.
      */
-    public func getBalanceByCurrency(currency: String) -> Promise<Currency> {
-        let request = self.adapter.buildRequest(UserService.getUserBalances())
-        let balance: Promise<Balance> = self.adapter.buildResponse(request)
+    open func getBalanceByCurrency(currency: String) -> Promise<Currency> {
+        let request = self.adapter.buildRequest(request: UserService.getUserBalances())
+        let balance: Promise<Balance> = self.adapter.buildResponse(request: request)
 
         return balance.then { (balance: Balance) -> Promise<Currency> in
             return Promise { fulfill, reject in
@@ -216,10 +216,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the cards user list.
      */
-    public func getCards() -> Promise<[Card]> {
-        let request = self.adapter.buildRequest(UserCardService.getUserCards())
+    open func getCards() -> Promise<[Card]> {
+        let request = self.adapter.buildRequest(request: UserCardService.getUserCards())
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -229,10 +229,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the card.
      */
-    public func getCardById(cardId: String) -> Promise<Card> {
-        let request = self.adapter.buildRequest(UserCardService.getUserCardById(cardId))
+    open func getCardById(cardId: String) -> Promise<Card> {
+        let request = self.adapter.buildRequest(request: UserCardService.getUserCardById(cardId: cardId))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -242,9 +242,9 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the list of cards.
      */
-    public func getCardsByCurrency(currency: String) -> Promise<[Card]> {
-        let request = self.adapter.buildRequest(UserCardService.getUserCards())
-        let cards: Promise<[Card]> = self.adapter.buildResponse(request)
+    open func getCardsByCurrency(currency: String) -> Promise<[Card]> {
+        let request = self.adapter.buildRequest(request: UserCardService.getUserCards())
+        let cards: Promise<[Card]> = self.adapter.buildResponse(request: request)
 
         return cards.then { (cards: [Card]) -> Promise<[Card]> in
             return Promise { fulfill, reject in
@@ -266,10 +266,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the list of user contacts.
      */
-    public func getContacts() -> Promise<[Contact]> {
-        let request = self.adapter.buildRequest(UserService.getUserContacts())
+    open func getContacts() -> Promise<[Contact]> {
+        let request = self.adapter.buildRequest(request: UserService.getUserContacts())
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -277,10 +277,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the list of user phones.
      */
-    public func getPhones() -> Promise<[Phone]> {
-        let request = self.adapter.buildRequest(UserService.getUserPhones())
+    open func getPhones() -> Promise<[Phone]> {
+        let request = self.adapter.buildRequest(request: UserService.getUserPhones())
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
     /**
@@ -288,9 +288,9 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the user balance.
      */
-    public func getTotalBalances() -> Promise<UserBalance> {
-        let request = self.adapter.buildRequest(UserService.getUserBalances())
-        let balance: Promise<Balance> = self.adapter.buildResponse(request)
+    open func getTotalBalances() -> Promise<UserBalance> {
+        let request = self.adapter.buildRequest(request: UserService.getUserBalances())
+        let balance: Promise<Balance> = self.adapter.buildResponse(request: request)
 
         return balance.then { (balance: Balance) -> Promise<UserBalance> in
             return Promise { fulfill, reject in
@@ -310,13 +310,13 @@ public class User: BaseModel, Mappable {
 
       - returns: A paginator with the user transactions.
      */
-    public func getUserTransactions() -> Paginator<Transaction> {
-        let request = self.adapter.buildRequest(UserService.getUserTransactions(Header.buildRangeHeader(Paginator<Transaction>.DEFAULT_START, end: Paginator<Transaction>.DEFAULT_OFFSET - 1)))
+    open func getUserTransactions() -> Paginator<Transaction> {
+        let request = self.adapter.buildRequest(request: UserService.getUserTransactions(range: Header.buildRangeHeader(start: Paginator<Transaction>.DEFAULT_START, end: Paginator<Transaction>.DEFAULT_OFFSET - 1)))
 
         let paginator: Paginator<Transaction> = Paginator(countClosure: { () -> Promise<Int> in
                 return Promise { fulfill, reject in
-                    self.adapter.buildRequest(UserService.getUserTransactions(Header.buildRangeHeader(0, end: 1))).end({ (response: Response) -> Void in
-                        guard let count = Header.getTotalNumberOfResults(response.headers) else {
+                    self.adapter.buildRequest(request: UserService.getUserTransactions(range: Header.buildRangeHeader(start: 0, end: 1))).end(done: { (response: Response) -> Void in
+                        guard let count = Header.getTotalNumberOfResults(headers: response.headers) else {
                             reject(UnexpectedResponseError(message: "Content-Range header should not be nil."))
 
                             return
@@ -326,11 +326,11 @@ public class User: BaseModel, Mappable {
                     })
                 }
             },
-            elements: self.adapter.buildResponse(request),
+            elements: self.adapter.buildResponse(request: request),
             hasNextPageClosure: { (currentPage) -> Promise<Bool> in
                 return Promise { fulfill, reject in
-                    self.adapter.buildRequest(UserService.getUserTransactions(Header.buildRangeHeader(0, end: 1))).end({ (response: Response) -> Void in
-                        guard let count = Header.getTotalNumberOfResults(response.headers) else {
+                    self.adapter.buildRequest(request: UserService.getUserTransactions(range: Header.buildRangeHeader(start: 0, end: 1))).end(done: { (response: Response) -> Void in
+                        guard let count = Header.getTotalNumberOfResults(headers: response.headers) else {
                             reject(UnexpectedResponseError(message: "Content-Range header should not be nil."))
 
                             return
@@ -341,8 +341,8 @@ public class User: BaseModel, Mappable {
                 }
             },
             nextPageClosure: { (range) -> Promise<[Transaction]> in
-                let request = self.adapter.buildRequest(UserService.getUserTransactions(range))
-                let promise: Promise<[Transaction]> = self.adapter.buildResponse(request)
+                let request = self.adapter.buildRequest(request: UserService.getUserTransactions(range: range))
+                let promise: Promise<[Transaction]> = self.adapter.buildResponse(request: request)
 
                 return promise
             })
@@ -357,10 +357,10 @@ public class User: BaseModel, Mappable {
 
       - returns: A promise with the updated user.
      */
-    public func update(updateFields: [String: AnyObject]) -> Promise<User> {
-        let request = self.adapter.buildRequest(UserService.updateUser(updateFields))
+    open func update(updateFields: [String: Any]) -> Promise<User> {
+        let request = self.adapter.buildRequest(request: UserService.updateUser(updatefields: updateFields))
 
-        return self.adapter.buildResponse(request)
+        return self.adapter.buildResponse(request: request)
     }
 
 }

@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Contact model.
-public class Contact: Mappable {
+open class Contact: Mappable {
 
     /// The contact id.
     public private(set) final var id: String?
@@ -53,7 +53,7 @@ public class Contact: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -61,7 +61,7 @@ public class Contact: Mappable {
 
       - parameter map: The object to map.
      */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.id <- map["id"]
         self.addresses <- map["addresses"]
         self.company <- map["company"]

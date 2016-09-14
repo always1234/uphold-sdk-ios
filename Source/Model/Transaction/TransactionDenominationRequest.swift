@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Transaction denomination request model.
-public class TransactionDenominationRequest: Mappable {
+open class TransactionDenominationRequest: Mappable {
 
     /// The amount of the transaction request.
     public private(set) final var amount: String?
@@ -28,7 +28,7 @@ public class TransactionDenominationRequest: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -36,7 +36,7 @@ public class TransactionDenominationRequest: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.amount <- map["amount"]
         self.currency <- map["currency"]
     }

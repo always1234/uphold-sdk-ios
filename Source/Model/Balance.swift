@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Balance model.
-public class Balance: Mappable {
+open class Balance: Mappable {
 
     /// The user balance.
     public private(set) final var balances: UserBalance?
@@ -23,7 +23,7 @@ public class Balance: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -31,7 +31,7 @@ public class Balance: Mappable {
 
       - parameter map: The object to map.
      */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.balances <- map["balances"]
     }
 

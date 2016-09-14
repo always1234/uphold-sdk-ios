@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Total model.
-public class Total: Mappable {
+open class Total: Mappable {
 
     /// The assets from the corresponding holding.
     public private(set) final var assets: String?
@@ -38,7 +38,7 @@ public class Total: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -46,7 +46,7 @@ public class Total: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.assets <- map["assets"]
         self.commissions <- map["commissions"]
         self.liabilities <- map["liabilities"]

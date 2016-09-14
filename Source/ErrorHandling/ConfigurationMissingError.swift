@@ -1,7 +1,7 @@
 import Foundation
 
 /// Configuration missing error.
-public class ConfigurationMissingError: UpholdClientError {
+open class ConfigurationMissingError: UpholdClientError {
 
     /**
       Constructor.

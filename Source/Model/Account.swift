@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Account model.
-public class Account: Mappable {
+open class Account: Mappable {
 
     /// The currency.
     public private(set) final var currency: String?
@@ -43,7 +43,7 @@ public class Account: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -51,7 +51,7 @@ public class Account: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.currency <- map["currency"]
         self.id <- map["id"]
         self.label <- map["label"]

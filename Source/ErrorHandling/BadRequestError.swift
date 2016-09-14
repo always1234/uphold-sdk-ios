@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// BadRequestError error.
-public class BadRequestError: UpholdClientError {
+open class BadRequestError: UpholdClientError {
 
     /**
       Constructor.

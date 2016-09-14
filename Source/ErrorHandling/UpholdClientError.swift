@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// UpholdClientError error.
-public class UpholdClientError: ErrorType, CustomStringConvertible {
+open class UpholdClientError: Error, CustomStringConvertible {
 
     /// The HTTP status code.
     public final var code: Int?

@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// ContactRequest model.
-public class ContactRequest: Mappable {
+open class ContactRequest: Mappable {
 
     /// The list of addresses.
     public private(set) final var addresses: [String]?
@@ -43,7 +43,7 @@ public class ContactRequest: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -51,7 +51,7 @@ public class ContactRequest: Mappable {
 
       - parameter map: The object to map.
      */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.addresses <- map["addresses"]
         self.company <- map["company"]
         self.emails <- map["emails"]

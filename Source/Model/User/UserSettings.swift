@@ -2,13 +2,13 @@ import Foundation
 import ObjectMapper
 
 /// UserSettings model.
-public class UserSettings: Mappable {
+open class UserSettings: Mappable {
 
     /// The user's default currency.
-    public private(set) var currency: String?
+    open private(set) var currency: String?
 
     /// A boolean indicating if the user has the news subscription enabled.
-    public private(set) var hasNewsSubscription: Bool?
+    open private(set) var hasNewsSubscription: Bool?
 
     /// The user internationalization settings.
     public private(set) final var intl: InternationalizationUserSettings?
@@ -43,7 +43,7 @@ public class UserSettings: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -51,7 +51,7 @@ public class UserSettings: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         currency  <- map["currency"]
         hasNewsSubscription  <- map["hasNewsSubscription"]
         intl  <- map["intl"]

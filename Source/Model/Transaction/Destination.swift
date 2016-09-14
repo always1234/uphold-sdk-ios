@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Destination model.
-public class Destination: Mappable {
+open class Destination: Mappable {
 
     /// The id of the account from the destination of the transaction.
     public private(set) final var accountId: String?
@@ -78,7 +78,7 @@ public class Destination: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -86,7 +86,7 @@ public class Destination: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         accountId  <- map["AccountId"]
         cardId  <- map["CardId"]
         accountType <- map["accountType"]

@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Value model.
-public class Value: Mappable {
+open class Value: Mappable {
 
     /// The quantity of assets held for the corresponding holding, but converted to a different currency.
     public private(set) final var assets: String?
@@ -38,7 +38,7 @@ public class Value: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -46,7 +46,7 @@ public class Value: Mappable {
 
       - parameter map: The object to map.
      */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.assets <- map["assets"]
         self.currency <- map["currency"]
         self.liabilities <- map["liabilities"]

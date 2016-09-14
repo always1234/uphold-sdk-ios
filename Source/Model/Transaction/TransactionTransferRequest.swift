@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Transaction destination request model.
-public class TransactionTransferRequest: TransactionRequest {
+open class TransactionTransferRequest: TransactionRequest {
 
     /// The destination of the transaction request.
     public private(set) final var destination: String?
@@ -26,8 +26,8 @@ public class TransactionTransferRequest: TransactionRequest {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
-        super.init(map)
+    required public init?(map: Map) {
+        super.init(map: map)
     }
 
     /**
@@ -35,8 +35,8 @@ public class TransactionTransferRequest: TransactionRequest {
 
       - parameter map: The object to map.
     */
-    public override func mapping(map: Map) {
-        super.mapping(map)
+    open override func mapping(map: Map) {
+        super.mapping(map: map)
 
         self.destination <- map["destination"]
     }

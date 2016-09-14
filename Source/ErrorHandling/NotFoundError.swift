@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// NotFoundError error.
-public class NotFoundError: UpholdClientError {
+open class NotFoundError: UpholdClientError {
 
     /**
       Constructor.

@@ -1,7 +1,7 @@
 import Foundation
 
 /// MalformedUrlError error.
-public class MalformedUrlError: UpholdClientError {
+open class MalformedUrlError: UpholdClientError {
 
     /**
       Constructor.

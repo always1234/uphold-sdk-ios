@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Fee model.
-public class Fee: Mappable {
+open class Fee: Mappable {
 
     /// The amount.
     public private(set) final var amount: String?
@@ -41,7 +41,7 @@ public class Fee: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -49,7 +49,7 @@ public class Fee: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         amount <- map["amount"]
         currency <- map["currency"]
         percentage <- map["percentage"]

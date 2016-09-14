@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 /// Authentication response model.
-public class AuthenticationResponse: Mappable {
+open class AuthenticationResponse: Mappable {
 
     /// The user access token.
     public private(set) final var accessToken: String?
@@ -38,7 +38,7 @@ public class AuthenticationResponse: Mappable {
 
       - parameter map: Mapping data object.
     */
-    required public init?(_ map: Map) {
+    required public init?(map: Map) {
     }
 
     /**
@@ -46,7 +46,7 @@ public class AuthenticationResponse: Mappable {
 
       - parameter map: The object to map.
     */
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         self.accessToken <- map["access_token"]
         self.expiresIn <- map["expires_in"]
         self.scope <- map["scope"]

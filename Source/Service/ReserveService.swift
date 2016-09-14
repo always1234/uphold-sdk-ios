@@ -2,7 +2,7 @@ import Foundation
 import SwiftClient
 
 /// Reserve service.
-public class ReserveService {
+open class ReserveService {
 
     /**
       Creates a request to get the reserve ledger.
@@ -12,7 +12,7 @@ public class ReserveService {
       - returns: A request to get the reserve ledger.
     */
     static func getLedger(range: String) -> Request {
-        return UpholdClient().get("/v0/reserve/ledger").set("Range", range)
+        return UpholdClient().get(url: "/v0/reserve/ledger").set(key: "Range", value: range)
     }
 
     /**
@@ -23,7 +23,7 @@ public class ReserveService {
       - returns: A request to get a reserve transaction.
     */
     static func getReserveTransactionById(transactionId: String) -> Request {
-        return UpholdClient().get(String(format: "/v0/reserve/transactions/%@", transactionId))
+        return UpholdClient().get(url: String(format: "/v0/reserve/transactions/%@", transactionId))
     }
 
     /**
@@ -34,7 +34,7 @@ public class ReserveService {
       - returns: A request to get the reserve transactions.
     */
     static func getReserveTransactions(range: String) -> Request {
-        return UpholdClient().get("/v0/reserve/transactions").set("Range", range)
+        return UpholdClient().get(url: "/v0/reserve/transactions").set(key: "Range", value: range)
     }
 
     /**
@@ -43,7 +43,7 @@ public class ReserveService {
       - returns: A request to get the reserve statistics.
     */
     static func getStatistics() -> Request {
-        return UpholdClient().get("/v0/reserve/statistics")
+        return UpholdClient().get(url: "/v0/reserve/statistics")
     }
 
 }
