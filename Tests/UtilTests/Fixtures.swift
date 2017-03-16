@@ -171,7 +171,7 @@ public class Fixtures {
             "transactionRefundedById": faker.lorem.characters(amount: 24),
             "transactionRefunds": faker.lorem.characters(amount: 24),
             "transactionStatus": faker.lorem.characters(amount: 24),
-            "transactionType": faker.lorem.characters(amount: 24),
+            "transactionType": faker.lorem.characters(amount: 24)
         ]
 
         if let fields = fields {

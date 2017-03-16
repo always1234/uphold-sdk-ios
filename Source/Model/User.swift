@@ -166,7 +166,7 @@ open class User: BaseModel, Mappable {
                     return
                 }
 
-                currencies.sorted(by: {$0.0 < $1.0}).forEach({ (currency: (String, Currency)) -> () in
+                currencies.sorted(by: {$0.0 < $1.0}).forEach({ (currency: (String, Currency)) -> Void in
                     responseCurrencies.append(currency.1)
                 })
 
@@ -248,7 +248,7 @@ open class User: BaseModel, Mappable {
 
         return cards.then { (cards: [Card]) -> Promise<[Card]> in
             return Promise { fulfill, reject in
-                let filteredCards = cards.filter() {
+                let filteredCards = cards.filter {
                     $0.currency == currency
                 }
 

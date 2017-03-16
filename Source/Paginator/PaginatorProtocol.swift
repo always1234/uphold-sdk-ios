@@ -6,7 +6,7 @@ import PromiseKit
 protocol PaginatorProtocol {
 
     /// Paginator generic type.
-    associatedtype T
+    associatedtype PaginatorType
 
     /**
       A closure to get a promise with the total number of elements.
@@ -20,7 +20,7 @@ protocol PaginatorProtocol {
 
       - returns: A promise with the array of elements.
     */
-    var nextPageClosure: (_ range: String) -> Promise<[T]> {get}
+    var nextPageClosure: (_ range: String) -> Promise<[PaginatorType]> {get}
 
     /**
       A closure to get a promise with a bolean indicating if exists a next page of elements.

@@ -36,7 +36,7 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
             return
         }
 
-        self.authorizationViewController = client.beginAuthorization(self, clientId: self.CLIENT_ID, scopes: scopes, state: state)
+        self.authorizationViewController = client.beginAuthorization(applicationViewController: self, clientId: self.CLIENT_ID, scopes: scopes, state: state)
 
         guard let authorizationViewController = self.authorizationViewController else {
             return
@@ -57,11 +57,11 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
             return self.handleError()
         }
 
-        client.completeAuthorization(authorizationViewController, clientId: self.CLIENT_ID, clientSecret: self.CLIENT_SECRET, grantType: "authorization_code", state: state, uri: url).then { (response: AuthenticationResponse) -> () in
+        client.completeAuthorization(authorizationViewController: authorizationViewController, clientId: self.CLIENT_ID, clientSecret: self.CLIENT_SECRET, grantType: "authorization_code", state: state, uri: url).then { (response: AuthenticationResponse) -> Void in
             userViewController.bearerToken = response.accessToken
 
             self.present(userViewController, animated: true, completion: nil)
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             self.handleError()
         })
     }

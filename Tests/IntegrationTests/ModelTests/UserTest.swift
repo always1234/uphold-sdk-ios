@@ -12,13 +12,13 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString(Fixtures.loadCard(fields: ["id": "foobar", "currency": "foo", "label": "BTC"]))!)
 
-        user.createCard(cardRequest: CardRequest(currency: "foo", label: "BTC")).then { (card: Card) -> () in
+        user.createCard(cardRequest: CardRequest(currency: "foo", label: "BTC")).then { (card: Card) -> Void in
             XCTAssertEqual(card.currency, "foo", "Failed: Wrong card currency.")
             XCTAssertEqual(card.id, "foobar", "Failed: Wrong card id.")
             XCTAssertEqual(card.label, "BTC", "Failed: Wrong card label.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create card error.")
         })
 
@@ -32,11 +32,11 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString(Fixtures.loadCard(fields: ["id": "foobar"]))!)
 
-        user.createCard(cardRequest: CardRequest(currency: "foo", label: "BTC", settings: cardSettings)).then { (card: Card) -> () in
+        user.createCard(cardRequest: CardRequest(currency: "foo", label: "BTC", settings: cardSettings)).then { (card: Card) -> Void in
             XCTAssertEqual(card.id, "foobar", "Failed: Wrong card id.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create card error.")
         })
 
@@ -50,11 +50,11 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString(account)!)
 
-        user.getAccountById(accountId: "foobar").then { (account: Account) -> () in
+        user.getAccountById(accountId: "foobar").then { (account: Account) -> Void in
             XCTAssertEqual(account.id, "foobar", "Failed: Wrong account object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get account by id error.")
         })
 
@@ -81,7 +81,7 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: json)
 
-        user.getAccounts().then { (accounts: [Account]) -> () in
+        user.getAccounts().then { (accounts: [Account]) -> Void in
             XCTAssertEqual(accounts.count, 2, "Failed: Wrong number of accounts.")
             XCTAssertEqual(accounts[0].currency, "EUR", "Failed: Wrong account object.")
             XCTAssertEqual(accounts[0].id, "foo", "Failed: Wrong account object.")
@@ -95,7 +95,7 @@ class UserTest: UpholdTestCase {
             XCTAssertEqual(accounts[1].type, "biz", "Failed: Wrong account object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get accounts error.")
         })
 
@@ -133,14 +133,14 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: json)
 
-        user.getBalanceByCurrency(currency: "EUR").then { (currency: Currency) -> () in
+        user.getBalanceByCurrency(currency: "EUR").then { (currency: Currency) -> Void in
             XCTAssertEqual(currency.amount, "75.01", "Failed: Wrong currency amount.")
             XCTAssertEqual(currency.balance, "58.05", "Failed: Wrong currency balance.")
             XCTAssertEqual(currency.currency, "EUR", "Failed: Wrong currency.")
             XCTAssertEqual(currency.rate, "1.29220", "Failed: Wrong currency.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get balances by currency error.")
         })
 
@@ -254,14 +254,14 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: json)
 
-        user.getBalances().then { (currencies: [Currency]) -> () in
+        user.getBalances().then { (currencies: [Currency]) -> Void in
             XCTAssertEqual(currencies.count, 3, "Failed: Wrong number of currencies.")
             XCTAssertEqual(currencies[0].amount, "2.45", "Failed: Wrong currency amount.")
             XCTAssertEqual(currencies[1].amount, "6.98", "Failed: Wrong currency amount.")
             XCTAssertEqual(currencies[2].amount, "75.01", "Failed: Wrong currency amount.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get balances error.")
         })
 
@@ -319,7 +319,7 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString(cards)!)
 
-        user.getCardsByCurrency(currency: "BTC").then { (cards: [Card]) -> () in
+        user.getCardsByCurrency(currency: "BTC").then { (cards: [Card]) -> Void in
             XCTAssertEqual(cards.count, 2, "Failed: Wrong number of card objects.")
             XCTAssertEqual(cards[0].id, "foobiz", "Failed: Wrong card object.")
             XCTAssertEqual(cards[0].currency, "BTC", "Failed: Wrong card currency.")
@@ -327,7 +327,7 @@ class UserTest: UpholdTestCase {
             XCTAssertEqual(cards[1].currency, "BTC", "Failed: Wrong card currency.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get cards by currency error.")
         })
 
@@ -363,11 +363,11 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString(card)!)
 
-        user.getCardById(cardId: "foobar").then { (card: Card) -> () in
+        user.getCardById(cardId: "foobar").then { (card: Card) -> Void in
             XCTAssertEqual(card.id, "foobar", "Failed: Wrong card object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get card by id error.")
         })
 
@@ -381,12 +381,12 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString(cards)!)
 
-        user.getCards().then { (cards: [Card]) -> () in
+        user.getCards().then { (cards: [Card]) -> Void in
             XCTAssertEqual(cards[0].id, "foo", "Failed: Wrong card object.")
             XCTAssertEqual(cards[1].id, "bar", "Failed: Wrong card object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get cards error.")
         })
 
@@ -420,7 +420,7 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: json)
 
-        user.getContacts().then { (contact: [Contact]) -> () in
+        user.getContacts().then { (contact: [Contact]) -> Void in
             XCTAssertEqual(contact.count, 2, "Failed: Wrong number of contacts objects.")
             XCTAssertEqual(contact[0].addresses!.count, 1, "Failed: Wrong number of addresses.")
             XCTAssertEqual(contact[0].addresses![0], "FooBar FooBiz", "Failed: Wrong contact object.")
@@ -442,7 +442,7 @@ class UserTest: UpholdTestCase {
             XCTAssertEqual(contact[1].name, "Fuz Buz", "Failed: Wrong contact object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get contacts error.")
         })
 
@@ -463,7 +463,7 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: json)
 
-        user.getPhones().then { (phones: [Phone]) -> () in
+        user.getPhones().then { (phones: [Phone]) -> Void in
             XCTAssertEqual(phones.count, 1, "Failed: Wrong number of phone objects.")
             XCTAssertEqual(phones[0].e164Masked, "+XXXXXXXXX04", "Failed: Wrong phone e164Masked field.")
             XCTAssertEqual(phones[0].id, "foobar", "Failed: Wrong phone id.")
@@ -473,7 +473,7 @@ class UserTest: UpholdTestCase {
             XCTAssertTrue(phones[0].verified!, "Failed: Wrong phone verified field.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get phones error.")
         })
 
@@ -505,7 +505,7 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: json)
 
-        user.getTotalBalances().then { (balances: UserBalance) -> () in
+        user.getTotalBalances().then { (balances: UserBalance) -> Void in
             guard let currencies = balances.currencies else {
                 XCTFail("Currencies should not be nil.")
 
@@ -524,7 +524,7 @@ class UserTest: UpholdTestCase {
             XCTAssertEqual(balances.total, "1083.77", "Failed: Wrong balance total.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: get total balances error.")
         })
 
@@ -560,7 +560,7 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!)
 
-        user.getUserTransactions().elements.then(execute: { (transactions: [Transaction]) -> () in
+        user.getUserTransactions().elements.then(execute: { (transactions: [Transaction]) -> Void in
             let mockRestAdapter: MockRestAdapter = (user.adapter as? MockRestAdapter)!
 
             XCTAssertEqual(mockRestAdapter.headers!.count, 1, "Failed: Wrong number of headers.")
@@ -570,7 +570,7 @@ class UserTest: UpholdTestCase {
             XCTAssertEqual(transactions[1].id, "foobiz", "Failed: Wrong transaction object.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("User test: get transactions error.")
         })
 
@@ -583,11 +583,11 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!, headers: ["content-range": "0-2/60"])
 
-        user.getUserTransactions().count().then(execute: { (count: Int) -> () in
+        user.getUserTransactions().count().then(execute: { (count: Int) -> Void in
             XCTAssertEqual(count, 60, "Failed: Wrong paginator count.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("User test: get transactions error.")
         })
 
@@ -600,11 +600,11 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser()
         user.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!, headers: ["content-range": "0-49/51"])
 
-        user.getUserTransactions().hasNext().then(execute: { (bool: Bool) -> () in
+        user.getUserTransactions().hasNext().then(execute: { (bool: Bool) -> Void in
             XCTAssertTrue(bool, "Failed: Wrong paginator hasNext value.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("User test: get transactions error.")
         })
 
@@ -616,13 +616,13 @@ class UserTest: UpholdTestCase {
         user.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!)
         let paginator: Paginator<Transaction> = user.getUserTransactions()
 
-        paginator.getNext().catch(execute: { (error: Error) in
+        paginator.getNext().catch(execute: { (_: Error) in
             XCTFail("User test: get next transactions error.")
         })
 
         let firstRequestHeaders = (user.adapter as? MockRestAdapter)!.headers
 
-        paginator.getNext().catch(execute: { (error: Error) in
+        paginator.getNext().catch(execute: { (_: Error) in
             XCTFail("User test: get next transactions error.")
         })
 
@@ -640,11 +640,11 @@ class UserTest: UpholdTestCase {
         let user: User = Fixtures.loadUser(fields: ["username": "foobar"])
         user.adapter = MockRestAdapter(body: Mapper().toJSONString(user)!)
 
-        user.update(updateFields: ["username": "foobar"]).then { (user: User) -> () in
+        user.update(updateFields: ["username": "foobar"]).then { (user: User) -> Void in
             XCTAssertEqual(user.username, "foobar", "Failed: Wrong username.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: update user error.")
         })
 

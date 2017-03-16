@@ -2,7 +2,7 @@ import XCTest
 import UpholdSdk
 import ObjectMapper
 
-
+/// Rate model tests.
 class RateTest: XCTestCase {
 
     func testRateMapperShouldReturnARate() {

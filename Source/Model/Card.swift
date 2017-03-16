@@ -144,10 +144,10 @@ open class Card: BaseModel, Mappable {
                     return Promise<Int>(error: error)
                 },
                 elements: Promise<[Transaction]>(error: error),
-                hasNextPageClosure: { (currentPage) -> Promise<Bool> in
+                hasNextPageClosure: { (_) -> Promise<Bool> in
                     return Promise<Bool>(error: error)
                 },
-                nextPageClosure: { (range) -> Promise<[Transaction]> in
+                nextPageClosure: { (_) -> Promise<[Transaction]> in
                     return Promise<[Transaction]>(error: error)
                 })
         }

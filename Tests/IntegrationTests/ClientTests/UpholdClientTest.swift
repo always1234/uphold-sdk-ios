@@ -70,7 +70,7 @@ class UpholdClientTest: UpholdTestCase {
         let client = UpholdClient()
         client.token.adapter = MockRestAdapter(body: Mapper().toJSONString(authenticationResponse)!)
 
-        client.completeAuthorization(authorizationViewController: authorizationViewController, clientId: "foo", clientSecret: "bar", grantType: "foobiz", state: "foobar", uri: URL(string: "uphold://foobar.com?code=foo&state=foobar")!).then { (authenticationResponse: AuthenticationResponse) -> () in
+        client.completeAuthorization(authorizationViewController: authorizationViewController, clientId: "foo", clientSecret: "bar", grantType: "foobiz", state: "foobar", uri: URL(string: "uphold://foobar.com?code=foo&state=foobar")!).then { (authenticationResponse: AuthenticationResponse) -> Void in
 
             XCTAssertEqual(authenticationResponse.accessToken, "foo", "Failed: Wrong access token.")
             XCTAssertEqual(authenticationResponse.expiresIn, 1234, "Failed: Wrong expiration time.")
@@ -78,7 +78,7 @@ class UpholdClientTest: UpholdTestCase {
             XCTAssertEqual(authenticationResponse.tokenType, "bar", "Failed: Wrong token type.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("Uphold client authorization test error.")
         })
 
@@ -107,7 +107,7 @@ class UpholdClientTest: UpholdTestCase {
         let client = UpholdClient()
         client.token.adapter = MockRestAdapter(body: json)
 
-        client.getTickers().then { (rates: [Rate]) -> () in
+        client.getTickers().then { (rates: [Rate]) -> Void in
             XCTAssertEqual(rates.count, 3, "Failed: Wrong response object size.")
             XCTAssertEqual(rates[0].ask, "foo", "Failed: Wrong response object attribute.")
             XCTAssertEqual(rates[0].bid, "bar", "Failed: Wrong response object attribute.")
@@ -123,7 +123,7 @@ class UpholdClientTest: UpholdTestCase {
             XCTAssertEqual(rates[2].pair, "foo", "Failed: Wrong response object attribute.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+            }.catch(execute: { (_: Error) in
             XCTFail("Uphold client test error.")
         })
 
@@ -152,14 +152,14 @@ class UpholdClientTest: UpholdTestCase {
         let client = UpholdClient()
         client.token.adapter = MockRestAdapter(body: json)
 
-        client.getTickersByCurrency(currency: "USD").then { (rates: [Rate]) -> () in
+        client.getTickersByCurrency(currency: "USD").then { (rates: [Rate]) -> Void in
             XCTAssertEqual(rates.count, 3, "Failed: Wrong response object size.")
             XCTAssertEqual(rates[0].ask, "foo", "Failed: Wrong response object attribute.")
             XCTAssertEqual(rates[1].ask, "fiz", "Failed: Wrong response object attribute.")
             XCTAssertEqual(rates[2].ask, "foobar", "Failed: Wrong response object attribute.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("Uphold client test error.")
         })
 
@@ -219,7 +219,7 @@ class UpholdClientTest: UpholdTestCase {
         let client = MockUpholdClient(bearerToken: "foobar")
         client.mockToken.mockAdapter = MockRestAdapter(body: json)
 
-        client.getUser().then { (user: User) -> () in
+        client.getUser().then { (user: User) -> Void in
             XCTAssertEqual(user.country, "BAR", "Failed: User country didn't match.")
             XCTAssertEqual(user.currencies!.count, 1, "Failed: User currencies didn't match.")
             XCTAssertEqual(user.currencies![0], "BTC", "Failed: User currencies didn't match.")
@@ -242,7 +242,7 @@ class UpholdClientTest: UpholdTestCase {
             XCTAssertEqual(user.username, "foobar", "Failed: User name didn't match.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("Uphold client test error.")
         })
 

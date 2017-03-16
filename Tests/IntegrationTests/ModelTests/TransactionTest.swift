@@ -166,11 +166,11 @@ class TransactionTest: UpholdTestCase {
         let transaction: Transaction = Fixtures.loadTransaction(fields: ["transactionId": "foobar", "transactionStatus": "waiting"])
         transaction.adapter = MockRestAdapter(body: Mapper().toJSONString(transaction)!)
 
-        transaction.cancel().then { (transaction: Transaction) -> () in
+        transaction.cancel().then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("Transaction test: cancel transaction error.")
         })
 
@@ -183,11 +183,11 @@ class TransactionTest: UpholdTestCase {
         let transaction: Transaction = Fixtures.loadTransaction(fields: ["transactionId": "foobar", "transactionStatus": "pending"])
         transaction.adapter = MockRestAdapter(body: Mapper().toJSONString(transaction)!)
 
-        transaction.commit().then { (transaction: Transaction) -> () in
+        transaction.commit().then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("Transaction test: commit transaction error.")
         })
 
@@ -200,11 +200,11 @@ class TransactionTest: UpholdTestCase {
         let transaction: Transaction = Fixtures.loadTransaction(fields: ["transactionId": "foobar", "transactionStatus": "pending"])
         transaction.adapter = MockRestAdapter(body: Mapper().toJSONString(transaction)!)
 
-        transaction.commit(otp: "otp").then { (transaction: Transaction) -> () in
+        transaction.commit(otp: "otp").then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction transfer error.")
         })
 
@@ -217,11 +217,11 @@ class TransactionTest: UpholdTestCase {
         let transaction: Transaction = Fixtures.loadTransaction(fields: ["transactionId": "foobar", "transactionStatus": "pending"])
         transaction.adapter = MockRestAdapter(body: Mapper().toJSONString(transaction)!)
 
-        transaction.commit(otp: "otp", transactionCommit: TransactionCommitRequest(message: "foobar")).then { (transaction: Transaction) -> () in
+        transaction.commit(otp: "otp", transactionCommit: TransactionCommitRequest(message: "foobar")).then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction transfer error.")
         })
 
@@ -234,11 +234,11 @@ class TransactionTest: UpholdTestCase {
         let transaction: Transaction = Fixtures.loadTransaction(fields: ["transactionId": "foobar", "transactionStatus": "pending"])
         transaction.adapter = MockRestAdapter(body: Mapper().toJSONString(transaction)!)
 
-        transaction.commit(transactionCommit: TransactionCommitRequest(message: "foobar")).then { (transaction: Transaction) -> () in
+        transaction.commit(transactionCommit: TransactionCommitRequest(message: "foobar")).then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction object.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction transfer error.")
         })
 

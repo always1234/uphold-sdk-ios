@@ -38,7 +38,7 @@ class ReserveTest: UpholdTestCase {
         reserve.adapter = MockRestAdapter(body: json)
         let paginator: Paginator<Deposit> = reserve.getLedger()
 
-        paginator.elements.then(execute: { (deposits: [Deposit]) -> () in
+        paginator.elements.then(execute: { (deposits: [Deposit]) -> Void in
             let mockRestAdapter: MockRestAdapter = (reserve.adapter as? MockRestAdapter)!
 
             XCTAssertEqual(mockRestAdapter.headers!.count, 1, "Failed: Wrong number of headers.")
@@ -58,7 +58,7 @@ class ReserveTest: UpholdTestCase {
             XCTAssertEqual(deposits[1].type, "bar", "Failed: Deposit type didn't match.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("Reserve test: get ledger error.")
         })
 
@@ -71,11 +71,11 @@ class ReserveTest: UpholdTestCase {
         let reserve = UpholdClient().getReserve()
         reserve.adapter = MockRestAdapter(body: "[{ \"id\": \"foobar\" }, { \"id\": \"foobiz\" }]", headers: ["content-range": "0-2/60"])
 
-        reserve.getLedger().count().then(execute: { (count: Int) -> () in
+        reserve.getLedger().count().then(execute: { (count: Int) -> Void in
             XCTAssertEqual(count, 60, "Failed: Wrong paginator count.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("Reserve test: get ledger error.")
         })
 
@@ -88,11 +88,11 @@ class ReserveTest: UpholdTestCase {
         let reserve = UpholdClient().getReserve()
         reserve.adapter = MockRestAdapter(body: "[{ \"id\": \"foobar\" }, { \"id\": \"foobiz\" }]", headers: ["content-range": "0-49/51"])
 
-        reserve.getLedger().hasNext().then(execute: { (bool: Bool) -> () in
+        reserve.getLedger().hasNext().then(execute: { (bool: Bool) -> Void in
             XCTAssertTrue(bool, "Failed: Wrong paginator hasNext value.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("Reserve test: get ledger error.")
         })
 
@@ -104,13 +104,13 @@ class ReserveTest: UpholdTestCase {
         reserve.adapter = MockRestAdapter(body: "[{ \"id\": \"foobar\" }, { \"id\": \"foobiz\" }]")
         let paginator: Paginator<Deposit> = reserve.getLedger()
 
-        paginator.getNext().catch(execute: { (error: Error) in
+        paginator.getNext().catch(execute: { (_: Error) in
             XCTFail("Reserve test: get ledger error.")
         })
 
         let firstRequestHeaders = (reserve.adapter as? MockRestAdapter)!.headers
 
-        paginator.getNext().catch(execute: { (error: Error) in
+        paginator.getNext().catch(execute: { (_: Error) in
             XCTFail("Reserve test: get ledger error.")
         })
 
@@ -157,7 +157,7 @@ class ReserveTest: UpholdTestCase {
         let reserve = UpholdClient().getReserve()
         reserve.adapter = MockRestAdapter(body: json)
 
-        reserve.getStatistics().then { (statistics: [ReserveStatistics]) -> () in
+        reserve.getStatistics().then { (statistics: [ReserveStatistics]) -> Void in
             XCTAssertEqual(statistics[0].currency, "FOO", "Failed: Currency didn't match.")
             XCTAssertEqual(statistics[0].totals!.assets, "foobar", "Failed: Totals assets didn't match.")
             XCTAssertEqual(statistics[0].totals!.commissions, "foo", "Failed: Totals comissions didn't match.")
@@ -178,7 +178,7 @@ class ReserveTest: UpholdTestCase {
             XCTAssertEqual(statistics[1].values!.first!.rate, "foo", "Failed: Values rate didn't match.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("Reserve test error.")
         })
 
@@ -191,11 +191,11 @@ class ReserveTest: UpholdTestCase {
         let reserve = UpholdClient().getReserve()
         reserve.adapter = MockRestAdapter(body: Mapper().toJSONString(Fixtures.loadTransaction(fields: ["transactionId": "foobar"]))!)
 
-        reserve.getTransactionById(transactionId: "foobar").then { (transaction: Transaction) -> () in
+        reserve.getTransactionById(transactionId: "foobar").then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: TransactionId didn't match.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("Reserve test: get transaction by id error.")
         })
 
@@ -208,7 +208,7 @@ class ReserveTest: UpholdTestCase {
         let reserve = UpholdClient().getReserve()
         reserve.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!)
 
-        reserve.getTransactions().elements.then(execute: { (transactions: [Transaction]) -> () in
+        reserve.getTransactions().elements.then(execute: { (transactions: [Transaction]) -> Void in
             let mockRestAdapter: MockRestAdapter = (reserve.adapter as? MockRestAdapter)!
 
             XCTAssertEqual(mockRestAdapter.headers!.count, 1, "Failed: Wrong number of headers.")
@@ -218,7 +218,7 @@ class ReserveTest: UpholdTestCase {
             XCTAssertEqual(transactions[1].id, "foobiz", "Failed: Wrong transaction object.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("Reserve test: get transaction error.")
         })
 
@@ -231,11 +231,11 @@ class ReserveTest: UpholdTestCase {
         let reserve = UpholdClient().getReserve()
         reserve.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!, headers: ["content-range": "0-2/60"])
 
-        reserve.getTransactions().count().then(execute: { (count: Int) -> () in
+        reserve.getTransactions().count().then(execute: { (count: Int) -> Void in
             XCTAssertEqual(count, 60, "Failed: Wrong paginator count.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("Reserve test: get transactions error.")
         })
 
@@ -248,11 +248,11 @@ class ReserveTest: UpholdTestCase {
         let reserve = UpholdClient().getReserve()
         reserve.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!, headers: ["content-range": "0-49/51"])
 
-        reserve.getTransactions().hasNext().then(execute: { (bool: Bool) -> () in
+        reserve.getTransactions().hasNext().then(execute: { (bool: Bool) -> Void in
             XCTAssertTrue(bool, "Failed: Wrong paginator hasNext value.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("Reserve test: get transactions error.")
         })
 
@@ -264,13 +264,13 @@ class ReserveTest: UpholdTestCase {
         reserve.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!)
         let paginator: Paginator<Transaction> = reserve.getTransactions()
 
-        paginator.getNext().catch(execute: { (error: Error) in
+        paginator.getNext().catch(execute: { (_: Error) in
             XCTFail("Reserve test: get next transactions error.")
         })
 
         let firstRequestHeaders = (reserve.adapter as? MockRestAdapter)!.headers
 
-        paginator.getNext().catch(execute: { (error: Error) in
+        paginator.getNext().catch(execute: { (_: Error) in
             XCTFail("Reserve test: get next transactions error.")
         })
 

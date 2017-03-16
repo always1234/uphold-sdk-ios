@@ -57,7 +57,7 @@ public class MockRestAdapter: UpholdRestAdapter {
             }
         }
 
-        return MockRequest(body: self.body, code: 200, errorHandler: {(error: Error) -> Void in}, headers: self.headers!, method: request.method)
+        return MockRequest(body: self.body, code: 200, errorHandler: {(_: Error) -> Void in}, headers: self.headers!, method: request.method)
     }
 
     /**

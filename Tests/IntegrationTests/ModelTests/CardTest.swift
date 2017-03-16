@@ -56,12 +56,12 @@ class CardTest: UpholdTestCase {
         let card: Card = Fixtures.loadCard()
         card.adapter = MockRestAdapter(body: "{\"id\": \"foo\",\"network\": \"bar\"}")
 
-        card.createAddress(addressRequest: AddressRequest(network: "bitcoin")).then { (address: Address) -> () in
+        card.createAddress(addressRequest: AddressRequest(network: "bitcoin")).then { (address: Address) -> Void in
             XCTAssertEqual(address.id, "foo", "Failed: Wrong adrress id.")
             XCTAssertEqual(address.network, "bar", "Failed: Wrong address network.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create address error.")
         })
 
@@ -163,7 +163,7 @@ class CardTest: UpholdTestCase {
         let transactionDenominationRequest = TransactionDenominationRequest(amount: "foo", currency: "bar")
         let transactionCardDepositRequest = TransactionCardDepositRequest(denomination: transactionDenominationRequest, origin: "foobiz", securityCode: "1234")
 
-        card.createTransaction(transactionRequest: transactionCardDepositRequest).then { (transaction: Transaction) -> () in
+        card.createTransaction(transactionRequest: transactionCardDepositRequest).then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.createdAt, "2014-08-27T00:01:11.616Z", "Failed: Wrong transaction createdAt.")
             XCTAssertEqual(transaction.denomination!.amount, "0.1", "Failed: Wrong transaction denomination amount.")
             XCTAssertEqual(transaction.denomination!.currency, "BTC", "Failed: Wrong transaction denomination currency.")
@@ -219,7 +219,7 @@ class CardTest: UpholdTestCase {
             XCTAssertEqual(transactionCardDepositRequest.securityCode, "1234", "Failed: Wrong transaction card deposit security code.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction card deposit error.")
         })
 
@@ -258,11 +258,11 @@ class CardTest: UpholdTestCase {
         let transactionDenominationRequest = TransactionDenominationRequest(amount: "foo", currency: "bar")
         let transactionCardDepositRequest = TransactionCardDepositRequest(denomination: transactionDenominationRequest, origin: "foobar", securityCode: "1234")
 
-        card.createTransaction(commit: true, transactionRequest: transactionCardDepositRequest).then { (transaction: Transaction) -> () in
+        card.createTransaction(commit: true, transactionRequest: transactionCardDepositRequest).then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction id.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction transfer error.")
         })
 
@@ -281,12 +281,12 @@ class CardTest: UpholdTestCase {
         let transactionDenominationRequest = TransactionDenominationRequest(amount: "foo", currency: "bar")
         let transactionDepositRequest = TransactionDepositRequest(denomination: transactionDenominationRequest, origin: "foobiz")
 
-        card.createTransaction(transactionRequest: transactionDepositRequest).then { (transaction: Transaction) -> () in
+        card.createTransaction(transactionRequest: transactionDepositRequest).then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction id.")
             XCTAssertEqual(transactionDepositRequest.origin, "foobiz", "Failed: Wrong transaction origin.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction deposit error.")
         })
 
@@ -325,11 +325,11 @@ class CardTest: UpholdTestCase {
         let transactionDenominationRequest = TransactionDenominationRequest(amount: "foo", currency: "bar")
         let transactionDepositRequest = TransactionDepositRequest(denomination: transactionDenominationRequest, origin: "foobar")
 
-        card.createTransaction(commit: true, transactionRequest: transactionDepositRequest).then { (transaction: Transaction) -> () in
+        card.createTransaction(commit: true, transactionRequest: transactionDepositRequest).then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction id.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction transfer error.")
         })
 
@@ -347,12 +347,12 @@ class CardTest: UpholdTestCase {
         let transactionDenominationRequest = TransactionDenominationRequest(amount: "foo", currency: "bar")
         let transactionRequest = TransactionTransferRequest(denomination: transactionDenominationRequest, destination: "foobiz")
 
-        card.createTransaction(transactionRequest: transactionRequest).then { (transaction: Transaction) -> () in
+        card.createTransaction(transactionRequest: transactionRequest).then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction id.")
             XCTAssertEqual(transactionRequest.destination, "foobiz", "Failed: Wrong transaction destination.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction transfer error.")
         })
 
@@ -391,11 +391,11 @@ class CardTest: UpholdTestCase {
         let transactionDenominationRequest = TransactionDenominationRequest(amount: "foo", currency: "bar")
         let transactionRequest = TransactionTransferRequest(denomination: transactionDenominationRequest, destination: "foobar")
 
-        card.createTransaction(commit: true, transactionRequest: transactionRequest).then { (transaction: Transaction) -> () in
+        card.createTransaction(commit: true, transactionRequest: transactionRequest).then { (transaction: Transaction) -> Void in
             XCTAssertEqual(transaction.id, "foobar", "Failed: Wrong transaction id.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("User test: create transaction transfer error.")
         })
 
@@ -408,7 +408,7 @@ class CardTest: UpholdTestCase {
         let card: Card = Fixtures.loadCard()
         card.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(fields: ["transactionId": "foobar"]), Fixtures.loadTransaction(fields: ["transactionId": "foobiz"])])!)
 
-        card.getTransactions().elements.then(execute: { (transactions: [Transaction]) -> () in
+        card.getTransactions().elements.then(execute: { (transactions: [Transaction]) -> Void in
             let mockRestAdapter: MockRestAdapter = (card.adapter as? MockRestAdapter)!
 
             XCTAssertEqual(mockRestAdapter.headers!.count, 1, "Failed: Wrong number of headers.")
@@ -417,7 +417,7 @@ class CardTest: UpholdTestCase {
             XCTAssertEqual(transactions[1].id, "foobiz", "Failed: Wrong transaction object.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("User test: get transaction error.")
         })
 
@@ -430,11 +430,11 @@ class CardTest: UpholdTestCase {
         let card: Card = Fixtures.loadCard()
         card.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(), Fixtures.loadTransaction()])!, headers: ["content-range": "0-2/60"])
 
-        card.getTransactions().count().then(execute: { (count: Int) -> () in
+        card.getTransactions().count().then(execute: { (count: Int) -> Void in
             XCTAssertEqual(count, 60, "Failed: Wrong paginator count.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("User test: get transactions error.")
         })
 
@@ -447,11 +447,11 @@ class CardTest: UpholdTestCase {
         let card: Card = Fixtures.loadCard()
         card.adapter = MockRestAdapter(body: Mapper().toJSONString([Fixtures.loadTransaction(), Fixtures.loadTransaction()])!, headers: ["content-range": "0-49/51"])
 
-        card.getTransactions().hasNext().then(execute: { (bool: Bool) -> () in
+        card.getTransactions().hasNext().then(execute: { (bool: Bool) -> Void in
             XCTAssertTrue(bool, "Failed: Wrong paginator hasNext value.")
 
             testExpectation.fulfill()
-        }).catch(execute: { (error: Error) in
+        }).catch(execute: { (_: Error) in
             XCTFail("User test: get transactions.")
         })
 
@@ -464,13 +464,13 @@ class CardTest: UpholdTestCase {
         card.adapter = MockRestAdapter(body: Mapper().toJSONString(transactions)!)
         let paginator: Paginator<Transaction> = card.getTransactions()
 
-        paginator.getNext().catch(execute: { (error: Error) in
+        paginator.getNext().catch(execute: { (_: Error) in
             XCTFail("Paginator get next error.")
         })
 
         let firstRequestHeaders = (card.adapter as? MockRestAdapter)!.headers
 
-        paginator.getNext().catch(execute: { (error: Error) in
+        paginator.getNext().catch(execute: { (_: Error) in
             XCTFail("Paginator get next error.")
         })
 
@@ -576,11 +576,11 @@ class CardTest: UpholdTestCase {
         let card: Card = Fixtures.loadCard(fields: ["id": "foobar"])
         card.adapter = MockRestAdapter(body: Mapper().toJSONString(card)!)
 
-        card.update(updateFields: ["id": "foobar"]).then { (card: Card) -> () in
+        card.update(updateFields: ["id": "foobar"]).then { (card: Card) -> Void in
             XCTAssertEqual(card.id, "foobar", "Failed: Wrong card id.")
 
             testExpectation.fulfill()
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             XCTFail("Card test: update card error.")
         })
 

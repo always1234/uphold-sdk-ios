@@ -35,13 +35,13 @@ class UserViewController: UIViewController {
             self.user = user
 
             return user.getCards()
-        }.then { (cards: [Card]) -> () in
+        }.then { (cards: [Card]) -> Void in
             guard let user = self.user, let firstName = user.firstName else {
                 return
             }
 
             self.authenticatedLabel.text = String(format: NSLocalizedString("user-view-controller.presenting-data", comment: "Presenting data."), firstName, cards.count)
-        }.catch(execute: { (error: Error) in
+        }.catch(execute: { (_: Error) in
             self.handleError()
         })
     }

@@ -30,7 +30,7 @@ class UpholdClientErrorHandlingTest: UpholdTestCase {
             self.expectation.fulfill()
         }
 
-        MockRequest(body: "body", code: 429, errorHandler: { (error: Error) -> Void in }, headers: ["x-ratelimit-limit": "300", "retry-after": "10"], method: "foo").end(done: done, onError: self.defaultError)
+        MockRequest(body: "body", code: 429, errorHandler: { (_: Error) -> Void in }, headers: ["x-ratelimit-limit": "300", "retry-after": "10"], method: "foo").end(done: done, onError: self.defaultError)
 
         wait()
     }
@@ -46,7 +46,7 @@ class UpholdClientErrorHandlingTest: UpholdTestCase {
             self.expectation.fulfill()
         }
 
-        MockRequest(body: "body", code: 401, errorHandler: { (error: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
+        MockRequest(body: "body", code: 401, errorHandler: { (_: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
 
         wait()
     }
@@ -62,7 +62,7 @@ class UpholdClientErrorHandlingTest: UpholdTestCase {
             self.expectation.fulfill()
         }
 
-        MockRequest(body: "body", code: 419, errorHandler: { (error: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
+        MockRequest(body: "body", code: 419, errorHandler: { (_: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
 
         wait()
     }
@@ -78,7 +78,7 @@ class UpholdClientErrorHandlingTest: UpholdTestCase {
             self.expectation.fulfill()
         }
 
-        MockRequest(body: "body", code: 400, errorHandler: { (error: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
+        MockRequest(body: "body", code: 400, errorHandler: { (_: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
 
         wait()
     }
@@ -127,7 +127,7 @@ class UpholdClientErrorHandlingTest: UpholdTestCase {
             self.expectation.fulfill()
         }
 
-        MockRequest(body: "body", code: 404, errorHandler: { (error: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
+        MockRequest(body: "body", code: 404, errorHandler: { (_: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
 
         wait()
     }
@@ -143,7 +143,7 @@ class UpholdClientErrorHandlingTest: UpholdTestCase {
             self.expectation.fulfill()
         }
 
-        MockRequest(body: "body", code: 412, errorHandler: { (error: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
+        MockRequest(body: "body", code: 412, errorHandler: { (_: Error) -> Void in }, headers: nil, method: "foo").end(done: done, onError: self.defaultError)
 
         wait()
     }
