@@ -8,7 +8,6 @@ env:
 
 before_script:
   - brew update
-  - brew install swiftlint
   - carthage update --platform iOS
 
 script:
